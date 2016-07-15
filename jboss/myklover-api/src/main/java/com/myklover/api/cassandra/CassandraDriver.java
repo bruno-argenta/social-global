@@ -19,13 +19,14 @@ public class CassandraDriver {
 	                  .build();
 	private static final Session session = cluster.connect("myklover");
 		
+	@SuppressWarnings("unchecked")
 	public static ResultSet executeStatement(String stringStatement, List<Object> args){
 		PreparedStatement statement = session.prepare(stringStatement);
 		BoundStatement boundStatement = new BoundStatement(statement);
 		boundStatement.bind();
 		Integer i =0;
 		for(Object obj : args){
-			boundStatement.set(i, obj, Object.class);
+			boundStatement.set(i, obj, (Class)obj.getClass());
 			i++;
 		}				
 		return session.execute(boundStatement);

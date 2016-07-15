@@ -6,7 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>myklover-api</artifactId>
-  <name>Connector for cassandra database</name>
+  <name>MyKlover database API</name>
   
   <dependencies>
   	<dependency>

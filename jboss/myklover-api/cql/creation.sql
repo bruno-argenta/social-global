@@ -7,12 +7,12 @@ AND replication = {
 
 
 CREATE TABLE myklover."Login" (
-	"userId" uuid,
-	"userName" text,
+	userId uuid,
+	userName text,
 	provider text,
 	password text,
-	"userCreationTimestamp" timestamp,
-	"wrongPasswordCounter" int,
-	"accountBlocked" boolean,
-	PRIMARY KEY ("userId", "userName", provider)
-);
+	userCreationTimestamp timestamp,
+	wrongPasswordCounter int,
+	accountBlocked boolean,
+	PRIMARY KEY (userId, userName, provider)
+)
