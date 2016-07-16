@@ -5,15 +5,19 @@
     <artifactId>MyKlover</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>myklover-rest</artifactId>
-  <name>myklover-rest</name>
-  <description>Rest api for nodejs</description>
+  <artifactId>myklover-rest-api</artifactId>
   <packaging>war</packaging>
   <dependencies>
-  		<dependency>
+  	<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>myklover-api</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.7</version>
 		</dependency>
 		 
 	  	<dependency>
@@ -35,9 +39,30 @@
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
-        </dependency>	
-		
+        </dependency>
   </dependencies>
-  
-  
+  <build>  
+  	<plugins>
+		<plugin>
+	    <groupId>org.jboss.as.plugins</groupId>
+	    <artifactId>jboss-as-maven-plugin</artifactId>
+	    <version>7.5.Final</version>
+	    <executions>
+	        <execution>
+	            <phase>install</phase>
+	            <goals>
+	                <goal>deploy</goal>
+	            </goals>
+	            <configuration>
+	                <hostname>localhost</hostname>
+	                <username>admin</username>
+	                <password>admin1234.!</password>
+	                <jbossHome>C:\Desarrollo\servers\jboss-eap-6.4.0\jboss-eap-6.4</jbossHome>
+	                <fileName>target/myklover-rest-api-0.0.1-SNAPSHOT.war</fileName>
+	            </configuration>
+	        </execution>
+	    </executions>
+	   </plugin>  	
+  	</plugins>	  
+   </build>
 </project>

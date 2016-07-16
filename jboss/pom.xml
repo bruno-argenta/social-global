@@ -8,6 +8,6 @@
   <modules>
   	<module>myklover-api</module>
   	<module>myklover-helpers</module>
-  	<module>myklover-rest</module>
+  	<module>myklover-rest-api</module>
   </modules>
 </project>

@@ -14,5 +14,5 @@ CREATE TABLE myklover."Login" (
 	userCreationTimestamp timestamp,
 	wrongPasswordCounter int,
 	accountBlocked boolean,
-	PRIMARY KEY (userId, userName, provider)
+	PRIMARY KEY (provider,userName)
 )

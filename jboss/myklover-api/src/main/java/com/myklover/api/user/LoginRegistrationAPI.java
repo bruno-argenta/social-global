@@ -7,15 +7,18 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.myklover.api.GenericAPI;
 import com.myklover.api.datainfo.user.in.LoginRegistrationIn;
-import com.myklover.api.datainfo.user.out.LoginRegistrationOut;;
+import com.myklover.api.datainfo.user.out.LoginRegistrationOut;
+import com.myklover.helpers.PropertiesHelper;
+import com.myklover.helpers.constants.MessagesConstants;
+import com.myklover.helpers.exception.BussinesException;;
 
 public class LoginRegistrationAPI extends GenericAPI{
 
 	
 	
-	public static List<LoginRegistrationOut> GetUserByUserNameProvider(String userName, String provider){
+	public static List<LoginRegistrationOut> getUserByUserNameProvider(String userName, String provider){
 		StringBuffer statement = new StringBuffer();
-		statement.append("SELECT * FROM \"Login\" WHERE username = ? and provider=? allow filtering;");
+		statement.append("SELECT * FROM \"Login\" WHERE username = ? and provider=?");
 		List<Object> args = new ArrayList<Object>();
 		args.add(userName);
 		args.add(provider);
@@ -29,33 +32,38 @@ public class LoginRegistrationAPI extends GenericAPI{
 	}
 	
 	
-	public static void registerUser(LoginRegistrationIn registrationInfo){
+	public static void registerUser(LoginRegistrationIn registrationInfo) throws Exception{
 		
 		StringBuffer statement = new  StringBuffer();
 		statement.append("INSERT INTO \"Login\" (userId,userName,provider,accountBlocked,password,userCreationTimestamp,wrongPasswordCounter) ");		
-		statement.append("VALUES (uuid(),?,?,?,?,toTimestamp(now()),?)");
+		statement.append("VALUES (uuid(),?,?,?,?,toTimestamp(now()),?) IF NOT EXISTS");
 		List<Object> args = new ArrayList<Object>();
 		args.add(registrationInfo.getUsername());
 		args.add(registrationInfo.getProvider());
 		args.add(Boolean.FALSE);
 		args.add(registrationInfo.getPassword());
 		args.add(0);		
-		executeStatement(statement.toString(), args);
-		
+		ResultSet result = executeStatement(statement.toString(), args);
+		List<Row> rows = result.all();
+		if (!rows.isEmpty()){
+			Row row  = rows.get(0);
+			Boolean inserted = row.get(0,Boolean.class);
+			if (!inserted){
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
+			}
+		}		
 		
 	}
 	
 	private static LoginRegistrationOut getElement(Row row) {
-		LoginRegistrationOut result = new LoginRegistrationOut();
-				
+		LoginRegistrationOut result = new LoginRegistrationOut();				
 		result.setUserId(row.getUUID(0));
 		result.setUserName(row.getString(1));
 		result.setProvider(row.getString(2));
 		result.setAccountBlocked(row.getBool(3));
 		result.setPassword(row.getString(4));
 		result.setUserCrationTimestamp(row.getTimestamp(5));
-		result.setWrongPassCounter(row.getInt(6));		
-		
+		result.setWrongPassCounter(row.getInt(6));	
 		return result;		
 	}
 	

@@ -19,7 +19,7 @@ public class CassandraDriver {
 	                  .build();
 	private static final Session session = cluster.connect("myklover");
 		
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static ResultSet executeStatement(String stringStatement, List<Object> args){
 		PreparedStatement statement = session.prepare(stringStatement);
 		BoundStatement boundStatement = new BoundStatement(statement);

@@ -2,10 +2,9 @@ package com.myklover.helpers.constants;
 
 public class AppConstants {
 
-	public static final String FACEBOOK_PROVIDER = "facebook";
-	public static final String TWEETER_PROVIDER = "tweeter";
-	public static final String GOOGLE_PROVIDER = "google";
-	public static final String MYKLOVER_PROVIDER = "myklover";
+	public static final int ERROR_INTERNAL = -1;
+	public static final int OK_CODE = 0;
+	public static final int WARNING_CODE = 1;
 	
 	
 }

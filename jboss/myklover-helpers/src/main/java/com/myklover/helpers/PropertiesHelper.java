@@ -20,5 +20,10 @@ public class PropertiesHelper {
     	int intValue = Integer.parseInt(value);
     	return intValue;
     }
+    
+    
+    public static String getStringMessageProperty (String key){
+    	return getMessage(RoutesConstants.MESSAGE_PROPERTIES, key);
+    }
 
 }

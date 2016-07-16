@@ -3,12 +3,8 @@ package com.myklover.api.datainfo.user.out;
 import java.util.Date;
 import java.util.UUID;
 
-import com.datastax.driver.core.LocalDate;
-
 public class LoginRegistrationOut {
 
-	
-	
 	private UUID userId;
 	private String userName;
 	private String password;
@@ -16,6 +12,7 @@ public class LoginRegistrationOut {
 	private int wrongPassCounter;
 	private Date userCrationTimestamp;
 	private Boolean accountBlocked;
+	
 	public UUID getUserId() {
 		return userId;
 	}

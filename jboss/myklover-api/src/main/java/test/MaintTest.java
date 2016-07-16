@@ -1,6 +1,5 @@
 package test;
 
-import com.myklover.api.cassandra.CassandraDriver;
 import com.myklover.api.datainfo.user.in.LoginRegistrationIn;
 import com.myklover.api.user.LoginRegistrationAPI;
 
@@ -13,7 +12,12 @@ public class MaintTest {
 		reg.setProvider("myklover");
 		reg.setUsername("bruno");
 
-		LoginRegistrationAPI.registerUser(reg);
+		try {
+			LoginRegistrationAPI.registerUser(reg);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
