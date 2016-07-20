@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.myklover</groupId>
-  <artifactId>MyKlover</artifactId>
+  <groupId>com.myklovr</groupId>
+  <artifactId>MyKlovr</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>My Klover Social Network</name>
+  <name>My Klovr Social Network</name>
   <modules>
-  	<module>myklover-api</module>
-  	<module>myklover-helpers</module>
-  	<module>myklover-rest-api</module>
+  	<module>myklovr-api</module>
+  	<module>myklovr-helpers</module>
+  	<module>myklovr-rest-api</module>
   </modules>
 </project>

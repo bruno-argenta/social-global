@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.myklover</groupId>
-    <artifactId>MyKlover</artifactId>
+    <groupId>com.myklovr</groupId>
+    <artifactId>MyKlovr</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>myklover-api</artifactId>
-  <name>MyKlover database API</name>
+  <artifactId>myklovr-api</artifactId>
+  <name>MyKlovr database API</name>
   
   <dependencies>
   	<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>myklover-helpers</artifactId>
+			<artifactId>myklovr-helpers</artifactId>
 			<version>${project.version}</version>
 	</dependency>
 	<dependency>
