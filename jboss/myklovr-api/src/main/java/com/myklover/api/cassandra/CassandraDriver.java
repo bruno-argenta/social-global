@@ -8,13 +8,13 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Session;
 import com.myklover.helpers.PropertiesHelper;
-import com.myklover.helpers.constants.PropertiiesConstants;
+import com.myklover.helpers.constants.PropertiesConstants;
 
 public class CassandraDriver {
 
 	private static final Cluster cluster = Cluster.builder()
-	                  .addContactPoint(PropertiesHelper.getStringConfigProperty(PropertiiesConstants.CONFIG_DATABASE_HOST))
-	                  .withPort(PropertiesHelper.getIntConfigProperty(PropertiiesConstants.CONFIG_DATABASE_PORT))
+	                  .addContactPoint(PropertiesHelper.getStringConfigProperty(PropertiesConstants.CONFIG_DATABASE_HOST))
+	                  .withPort(PropertiesHelper.getIntConfigProperty(PropertiesConstants.CONFIG_DATABASE_PORT))
 	                  .withCredentials("myklover", "myklover")
 	                  .build();
 	private static final Session session = cluster.connect("myklover");

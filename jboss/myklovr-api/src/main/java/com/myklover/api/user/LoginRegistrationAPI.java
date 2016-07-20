@@ -18,7 +18,7 @@ public class LoginRegistrationAPI extends GenericAPI{
 	
 	public static List<LoginRegistrationOut> getUserByUserNameProvider(String userName, String provider){
 		StringBuffer statement = new StringBuffer();
-		statement.append("SELECT * FROM \"Login\" WHERE username = ? and provider=?");
+		statement.append("SELECT userid,username,provider,accountblocked,password,usercreationtimestamp,wrongpasswordcounter FROM \"Login\" WHERE username = ? and provider=?");
 		List<Object> args = new ArrayList<Object>();
 		args.add(userName);
 		args.add(provider);

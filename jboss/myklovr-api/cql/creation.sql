@@ -16,3 +16,10 @@ CREATE TABLE myklover."Login" (
 	accountBlocked boolean,
 	PRIMARY KEY (provider,userName)
 )
+
+CREATE TABLE myklover.session (
+	sessiontoken text,
+	userid uuid,
+	expirationtimestamp timestamp,
+	PRIMARY KEY (sessiontoken)
+);

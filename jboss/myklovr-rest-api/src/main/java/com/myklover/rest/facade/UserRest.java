@@ -29,13 +29,30 @@ public class UserRest {
 		GenericDTO result;
 		Gson gson = new Gson();
 		try {
-			loginRegistrationBean.registerUser(loginRegistration);
-			result = new GenericDTO("", AppConstants.OK_CODE, "");
+			String sessionToken = loginRegistrationBean.registerUserMyKlovr(loginRegistration);
+			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
 		}
 		String resultString = gson.toJson(result); 
 		
+		return Response.status(200).entity(resultString).build();		
+	}
+	
+	
+	@POST
+	@Path("/login")
+	@Consumes("application/json")
+	public Response loginUser(LoginRegistrationIn loginRegistration) {
+		GenericDTO result;
+		Gson gson = new Gson();
+		try {
+			String sessionToken = loginRegistrationBean.loginUser(loginRegistration);
+			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
+		} catch (Exception e) {
+			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+		}
+		String resultString = gson.toJson(result);		
 		return Response.status(200).entity(resultString).build();		
 	}
 	

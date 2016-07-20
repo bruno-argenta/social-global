@@ -13,7 +13,13 @@ exports.registerUser = function(req, res) {
     service.requestPost(req.body,CONSTANTS.SERVICES.USER.REGISTER_USER,response,connUUID);
 };
 
-
+exports.registerUser = function(req, res) {
+    console.log('POST loginUser');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var connUUID = uuid.v1();
+    conectionsPool[connUUID] = {request: req,response:res};
+    service.requestPost(req.body,CONSTANTS.SERVICES.USER.LOGIN_USER,response,connUUID);
+};
 
 
 function response(model, connUUID){

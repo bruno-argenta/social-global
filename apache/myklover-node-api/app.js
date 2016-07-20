@@ -19,6 +19,9 @@ var router = express.Router();
 router.route('/user/registerUser')
         .post(userCtrl.registerUser);
 
+router.route('/user/loginUser')
+    .post(userCtrl.registerUser);
+
 app.use('/api/',router);
 
 app.listen(CONSTANTS.CONFIG.LISTEN_PORT, function() {

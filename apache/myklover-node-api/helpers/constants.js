@@ -1,4 +1,4 @@
-var apppath = "/myklover-rest-api-0.0.1-SNAPSHOT";
+var apppath = "/myklovr-rest-api-0.0.1-SNAPSHOT";
 
 exports.CONFIG = Object.freeze({
     LISTEN_PORT: 3000,
@@ -10,7 +10,7 @@ exports.CONFIG = Object.freeze({
 exports.SERVICES = Object.freeze({
     USER:{
         REGISTER_USER: apppath + "/user/register",
-        LOGIN_USER: apppath + "/user/register",
+        LOGIN_USER: apppath + "/user/login",
     }
 
 });
