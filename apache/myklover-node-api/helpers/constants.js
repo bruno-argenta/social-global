@@ -11,6 +11,9 @@ exports.SERVICES = Object.freeze({
     USER:{
         REGISTER_USER: apppath + "/user/register",
         LOGIN_USER: apppath + "/user/login",
+        VALIDATE_CODE:  apppath + "/user/verifyCode",
+        RECOVERY_PASSWORD: apppath + "/user/recoveryPassword",
+        CHANGE_PASSWORD: apppath + "/user/changePasswordRecovery",
     }
 
 });

@@ -20,7 +20,17 @@ router.route('/user/registerUser')
         .post(userCtrl.registerUser);
 
 router.route('/user/loginUser')
-    .post(userCtrl.registerUser);
+    .post(userCtrl.loginUser);
+
+router.route('/user/recoveryPassword')
+    .post(userCtrl.recoveryPassword);
+
+router.route('/user/validateCode')
+    .post(userCtrl.validateCode);
+
+router.route('/user/changePassword')
+    .post(userCtrl.changePassword);
+
 
 app.use('/api/',router);
 
