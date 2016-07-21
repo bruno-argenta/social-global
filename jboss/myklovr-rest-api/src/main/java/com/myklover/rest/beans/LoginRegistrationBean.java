@@ -22,13 +22,13 @@ import com.myklover.helpers.exception.BussinesException;
 @LocalBean
 public class LoginRegistrationBean {
 
-	private static final String MYKLOVER_PROVIDER = "myklover";
+	private static final String MYKLOVR_PROVIDER = "myklovr";
 	private static final String FACEBOOK_PROVIDER = "facebook";
 	private static final String TWITTER_PROVIDER = "twitter";
 	private static final String GPLUS_PROVIDER = "gplus";
 
 	public String registerUserMyKlovr(LoginRegistrationIn registrationInfo) throws Exception {
-		registrationInfo.setProvider(MYKLOVER_PROVIDER);
+		registrationInfo.setProvider(MYKLOVR_PROVIDER);
 		return registerUser(registrationInfo);
 
 	}
@@ -60,13 +60,13 @@ public class LoginRegistrationBean {
 	
 	
 
-	public String loginUser(LoginRegistrationIn registrationInfo) throws BussinesException {
-		List<LoginRegistrationOut> result = LoginRegistrationAPI
+	public String loginUser(LoginRegistrationIn registrationInfo) throws Exception {
+		LoginRegistrationOut loginUser = LoginRegistrationAPI
 				.getUserByUserNameProvider(registrationInfo.getUsername(), registrationInfo.getProvider());
-		if (!result.isEmpty()) {
-			LoginRegistrationOut loginUser = result.get(0);
+		if (loginUser != null) {
 			String hashedPassword = CryptoHelper.hashString(registrationInfo.getPassword());
 			if (StringUtils.equalsIgnoreCase(hashedPassword, loginUser.getPassword()) && !loginUser.getAccountBlocked()){
+				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(), false, 0);
 				return createSessionUser(loginUser.getUserId());
 			}else{
 				
@@ -75,13 +75,15 @@ public class LoginRegistrationBean {
 				if (loginUser.getWrongPassCounter() < PropertiesHelper.getIntConfigProperty(PropertiesConstants.CONFIG_USER_WRONG_PASSWORD_COUNTER)){
 					errorMessage = PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_WRONG_PASSWORD);
 					//TODO update login register
+					
 				}else{
 					errorMessage = PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_ACCOUNT_BLOCKED);
 					if (!loginUser.getAccountBlocked()){
 						loginUser.setAccountBlocked(true);
 						//TODO update login register
 					}				
-				};			
+				};
+				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(), loginUser.getAccountBlocked(), loginUser.getWrongPassCounter());
 				throw new BussinesException(errorMessage);
 			}
 		}else{
@@ -101,8 +103,7 @@ public class LoginRegistrationBean {
 		String hashedPassword = CryptoHelper.hashString(registrationInfo.getPassword());
 		registrationInfo.setPassword(hashedPassword);
 		LoginRegistrationAPI.registerUser(registrationInfo);
-		List<LoginRegistrationOut> result = LoginRegistrationAPI.getUserByUserNameProvider(registrationInfo.getUsername(), registrationInfo.getProvider());
-		LoginRegistrationOut user = result.get(0);
+		LoginRegistrationOut user = LoginRegistrationAPI.getUserByUserNameProvider(registrationInfo.getUsername(), registrationInfo.getProvider());		
 		return createSessionUser(user.getUserId());
 	}
 

@@ -16,7 +16,7 @@ public class LoginRegistrationAPI extends GenericAPI{
 
 	
 	
-	public static List<LoginRegistrationOut> getUserByUserNameProvider(String userName, String provider){
+	public static LoginRegistrationOut getUserByUserNameProvider(String userName, String provider){
 		StringBuffer statement = new StringBuffer();
 		statement.append("SELECT userid,username,provider,accountblocked,password,usercreationtimestamp,wrongpasswordcounter FROM \"Login\" WHERE username = ? and provider=?");
 		List<Object> args = new ArrayList<Object>();
@@ -27,7 +27,7 @@ public class LoginRegistrationAPI extends GenericAPI{
 		for (Row row : result) {
 			resultList.add(getElement(row));
 		}
-		return resultList;
+		return resultList.get(0);
 	
 	}
 	
@@ -54,6 +54,50 @@ public class LoginRegistrationAPI extends GenericAPI{
 		}		
 		
 	}
+	
+	public static void updatePasswordCounterUser(String userName, String provider, boolean accountBlocked, int passwordCounter) throws Exception{
+		
+		StringBuffer statement = new  StringBuffer();
+		statement.append("UPDATE \"Login\" SET wrongPasswordCounter = ? , accountBlocked = ? ");		
+		statement.append("WHERE username= ? and provider = ? IF EXISTS");
+		List<Object> args = new ArrayList<Object>();
+		args.add(passwordCounter);
+		args.add(accountBlocked);
+		args.add(userName);
+		args.add(provider);	
+		ResultSet result = executeStatement(statement.toString(), args);
+		List<Row> rows = result.all();
+		if (!rows.isEmpty()){
+			Row row  = rows.get(0);
+			Boolean inserted = row.get(0,Boolean.class);
+			if (!inserted){
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
+			}
+		}		
+		
+	}
+
+	public static void updatePasswordUser(String userName, String provider, String password) throws Exception{
+		
+		StringBuffer statement = new  StringBuffer();
+		statement.append("UPDATE \"Login\" SET password = ? ");		
+		statement.append("WHERE username= ? and provider = ? IF EXISTS");
+		List<Object> args = new ArrayList<Object>();
+		args.add(password);
+		args.add(userName);
+		args.add(provider);	
+		ResultSet result = executeStatement(statement.toString(), args);
+		List<Row> rows = result.all();
+		if (!rows.isEmpty()){
+			Row row  = rows.get(0);
+			Boolean inserted = row.get(0,Boolean.class);
+			if (!inserted){
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
+			}
+		}		
+		
+	}
+	
 	
 	private static LoginRegistrationOut getElement(Row row) {
 		LoginRegistrationOut result = new LoginRegistrationOut();				

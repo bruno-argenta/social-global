@@ -1,5 +1,6 @@
 package com.myklover.helpers;
 
+import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 import com.myklover.helpers.constants.RoutesConstants;
@@ -19,11 +20,14 @@ public class PropertiesHelper {
     	String value = getMessage(RoutesConstants.CONFIG_PROPERTIES, key);
     	int intValue = Integer.parseInt(value);
     	return intValue;
-    }
-    
+    }    
     
     public static String getStringMessageProperty (String key){
     	return getMessage(RoutesConstants.MESSAGE_PROPERTIES, key);
+    }
+    
+    public static String getStringMessageProperty (String key, Object... args){
+    	return MessageFormat.format(getMessage(RoutesConstants.MESSAGE_PROPERTIES, key), args);
     }
 
 }

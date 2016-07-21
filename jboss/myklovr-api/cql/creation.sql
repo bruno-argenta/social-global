@@ -23,3 +23,11 @@ CREATE TABLE myklover.session (
 	expirationtimestamp timestamp,
 	PRIMARY KEY (sessiontoken)
 );
+
+CREATE TABLE myklover.passwordrecovery (
+	username text,
+	verificationtoken text,
+	expirationtimestamp timestamp,
+	PRIMARY KEY (verificationtoken)
+);
+
