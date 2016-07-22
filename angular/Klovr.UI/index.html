@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="klovr.ui" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="klovr.ui" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="klovr.ui" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="klovr.ui" class="no-js" ng-controller="MainController">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="title.title()"></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/roboto.css" rel="stylesheet" />
+    <link rel="stylesheet" href="lib/normalize/normalize.css">
+
+    <link href="lib/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="lib/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="lib/bootstrap-social/bootstrap-social.css" rel="stylesheet" />
+    <link href="lib/fullPage/jquery.fullPage.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script src="lib/modernizr/modernizr.js"></script>
+    <script src="lib/jquery/jquery-1.11.1.min.js"></script>
+    <script src="lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="lib/fullPage/jquery.fullPage.min.js"></script>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ng-view></div>
+
+
+
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    -->
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
+    <script src="lib/satellizer/satellizer.min.js"></script>
+    <script src="lib/angular/angular-messages.min.js"></script>
+    <script src="lib/angular/angular-mocks.js"></script>
+    <script src="lib/angular-local-storage/angular-local-storage.min.js"></script>
+
+    <script src="app.js"></script>
+
+    <script src="views/home/home.js"></script>
+    <script src="apiClient/apiUrls.js"></script>
+    <script src="apiClient/apiClient.js"></script>
+    <script src="views/logIn/logIn.js"></script>
+    <script src="views/wizard/wizard.js"></script>
+    <script src="views/passwordRecovery/passwordRecovery.js"></script>
+    <script src="configuration/authentication.js"></script>
+    <script src="components/shared/authentication.js"></script>
+    <script src="components/shared/title.js"></script>
+    <script src="components/shared/resource.js"></script>
+    <script src="components/validations/compareTo.js"></script>
+</body>
+</html>

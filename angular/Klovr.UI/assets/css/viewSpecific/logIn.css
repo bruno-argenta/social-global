@@ -1,0 +1,316 @@
+﻿body, html {
+    height: 100%;
+    font-family: Roboto;
+    font-size: 14px;
+}
+
+#login {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+    #login #site-img {
+        width: 66.66%;
+    }
+
+    #login #login-content {
+        width: 33.34%;
+        height: 100%;
+        display: block;
+        overflow-y: auto;
+        height: 100%;
+    }
+
+    #login #data {
+        width: 62%;
+        margin: 0 auto;
+        min-width: 340px;
+    }
+
+    #login #create-social {
+        margin-top: 336px;
+    }
+
+    #login #create-mail-title {
+        margin-top: 30px;
+        cursor: pointer;
+    }
+
+    #login #welcome {
+        margin-top: -70px;
+    }
+
+    /*#login .hide-content{
+	visibility:hidden;
+	border-style: none;
+}*/
+
+    #login .show-content {
+        visibility: visible;
+    }
+
+
+    #login .right {
+        text-align: right;
+    }
+
+    #login .center {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    /* BEGIN SEPARATORS */
+    #login .right span.line-separator {
+        margin-right: 0px;
+    }
+
+    #login span.line-separator {
+        border-top: 5px solid #d8dce5;
+        display: block;
+        width: 25%;
+        margin: 5px auto 10px;
+    }
+
+    /* END SEPARATORS */
+
+
+
+    /* BEGIN FORM */
+
+    #login form {
+        padding: 20px 40px 10px;
+    }
+
+        #login form > div,
+        #login form > div.flex-div div {
+            margin: 10px;
+        }
+
+        #login form div input {
+            width: 100%;
+            height: 40px;
+        }
+
+            #login form div input[type=submit] {
+                width: 130px;
+                height: 40px;
+                background-color: #68a470;
+                border: none;
+                color: white;
+            }
+
+    #login input[type=submit]:hover {
+        background-color: #598c5f;
+    }
+
+    #login input[type=submit]:active, #login input[type=submit]:focus {
+        background-color: #49724e;
+        outline: none;
+    }
+
+    #login form div input[type=text], #login form div input[type=email], #login form div input[type=password] {
+        padding-left: 10px;
+    }
+
+    #login .flex-div {
+        display: flex;
+        margin: 35px 0 0;
+    }
+
+    #login #login-title {
+        cursor: pointer;
+    }
+
+    #login #mail {
+        background-color: white;
+        z-index: 10000;
+        position: relative;
+        /*float: right;*/
+    }
+
+        #login #mail form {
+            background-color: white;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #888888;
+            position: absolute;
+            width: 100%;
+        }
+
+    #login #check {
+        float: right;
+        width: 50%;
+        height: 40px;
+    }
+
+        #login #check label {
+            font-weight: 400;
+        }
+
+    #login #submit {
+        float: left;
+        margin: 0;
+        width: 50%;
+    }
+
+    #login #mail a {
+        text-decoration: underline;
+        color: #3882f2;
+    }
+
+    #login #mail form div input[type=submit] {
+        float: right;
+        margin-right: 10px;
+        width: 100%;
+    }
+
+    #login #mail form div input[type=checkbox] {
+        margin: 1px 5px 0 0px;
+        width: 15px;
+        float: left;
+        left: 0px;
+        height: 15px;
+        border: 1px solid #cacece;
+        /*margin: 8px;*/
+    }
+
+    /* END FORM */
+
+
+    /* BEGIN GLYPHICON */
+
+    #login .glyphicon {
+        padding-left: 5px;
+        font-size: 18px;
+    }
+
+    /* END GLYPHICON */
+
+
+    /* BEGIN SOCIAL BUTTONS */
+
+    #login .btn-social {
+        margin: 0 auto 10px;
+        width: 225px;
+        border-radius: 0px;
+        padding-left: 60px;
+    }
+
+    #login .btn-facebook:hover .fa-facebook {
+        background: #24365d;
+    }
+
+    #login .btn-twitter:hover .fa-twitter {
+        background: #217fc6;
+    }
+
+    #login .btn-google:hover .fa-google {
+        background: #a52b1c;
+    }
+
+    /* END SOCIAL BUTTONS */
+
+
+
+    /* BEGIN SHOW/HIDE DIVS*/
+
+    /*#login #login-title:hover ~ #mail.hide-content , #mail .show-content{
+	visibility:visible;
+}
+#login #login-title:hover ~ #mail .show-content{
+	visibility:hidden;
+}
+
+#login #create-mail-title:hover ~#create-mail.hide-content{
+    visibility:visible;
+}*/
+
+
+    #login .arrowUp:before {
+        content: "\e113";
+    }
+
+
+/* END SHOW/HIDE DIVS*/
+
+
+
+
+/* Backgrounds will cover all the section
+* --------------------------------------- */
+.img-section {
+    background-size: cover;
+    height: 100%;
+    /* opacity: 0.5; */
+}
+
+.obscured {
+    position: relative;
+}
+
+    .obscured::before {
+        position: absolute; /* maximize the pseudo-element */
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.3); /* use background-image here */
+        content: " "; /* it needs actual content, an empty space is enough */
+        z-index: 1;
+    }
+
+
+#header {
+    position: fixed;
+    display: block;
+    height: 100px;
+    width: 300px;
+    max-height: 100px;
+    left: 60px;
+    top: 20px;
+    background-image: url(../../images/logo.png);
+    background-repeat: no-repeat;
+}
+
+#btn {
+    position: fixed;
+    display: block;
+    height: 70px;
+    width: 70px;
+    left: 29%;
+    top: 53%;
+    max-height: 110px;
+    background-image: url(../../images/button-arrow-down.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* Style for our header texts
+* --------------------------------------- */
+#site-img h1 {
+    position: absolute;
+    top: 36%;
+    color: white;
+    font-weight: 100;
+    font-size: 50px;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Centered texts in each section
+* --------------------------------------- */
+.section {
+    text-align: center;
+}
+
+#fp-nav ul li a span {
+    background: #ffffff;
+}
+
+/* END CAROUSEL */

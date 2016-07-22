@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klovr.UI", "Klovr.UI\Klovr.UI.csproj", "{E248CC4D-610B-4B25-8959-C35171A8FA26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klover.WebApiMock", "Klover.WebApiMock\Klover.WebApiMock.csproj", "{D2A3B433-914B-4A63-AC26-4BB358639D7F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://vertexsourcesrv:8080/tfs/vertexsource
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Klovr.UI\\Klovr.UI.csproj
+		SccProjectName1 = Klovr.UI
+		SccLocalPath1 = Klovr.UI
+		SccProjectUniqueName2 = Klover.WebApiMock\\Klover.WebApiMock.csproj
+		SccProjectName2 = Klover.WebApiMock
+		SccLocalPath2 = Klover.WebApiMock
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E248CC4D-610B-4B25-8959-C35171A8FA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E248CC4D-610B-4B25-8959-C35171A8FA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E248CC4D-610B-4B25-8959-C35171A8FA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E248CC4D-610B-4B25-8959-C35171A8FA26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A3B433-914B-4A63-AC26-4BB358639D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A3B433-914B-4A63-AC26-4BB358639D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A3B433-914B-4A63-AC26-4BB358639D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A3B433-914B-4A63-AC26-4BB358639D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

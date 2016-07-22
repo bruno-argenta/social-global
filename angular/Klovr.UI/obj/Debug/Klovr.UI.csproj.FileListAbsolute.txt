@@ -1,0 +1,6 @@
+C:\Users\bruno\AppData\Roaming\Skype\My Skype Received Files\Source Code\Source Code\Klovr.UI\bin\Klovr.UI.dll.config
+C:\Users\bruno\AppData\Roaming\Skype\My Skype Received Files\Source Code\Source Code\Klovr.UI\bin\Klovr.UI.dll
+C:\Users\bruno\AppData\Roaming\Skype\My Skype Received Files\Source Code\Source Code\Klovr.UI\bin\Klovr.UI.pdb
+C:\Users\bruno\AppData\Roaming\Skype\My Skype Received Files\Source Code\Source Code\Klovr.UI\obj\Debug\Klovr.UI.csprojResolveAssemblyReference.cache
+C:\Users\bruno\AppData\Roaming\Skype\My Skype Received Files\Source Code\Source Code\Klovr.UI\obj\Debug\Klovr.UI.dll
+C:\Users\bruno\AppData\Roaming\Skype\My Skype Received Files\Source Code\Source Code\Klovr.UI\obj\Debug\Klovr.UI.pdb

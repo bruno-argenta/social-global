@@ -1,0 +1,15 @@
+﻿
+
+input[type=text]:not(.hide-errors).ng-dirty.ng-invalid,
+input[type=email]:not(.hide-errors).ng-dirty.ng-invalid,
+input[type=password]:not(.hide-errors).ng-dirty.ng-invalid {
+    border: 1px solid #d44e4e;
+}
+
+.form-validation-error {
+    font-size: 14px;
+    color: white;
+    background-color: #d44e4e;
+    margin: 3px 0;
+    text-align: center;
+}

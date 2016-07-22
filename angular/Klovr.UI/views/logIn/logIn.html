@@ -1,0 +1,104 @@
+﻿<link rel="stylesheet" href="assets/css/viewSpecific/logIn.css">
+
+<div id="login">
+    <div id="site-img">
+        <div id="header"></div>
+        <div id="btn"></div>
+
+        <div class="section" ng-repeat="item in scrollerElements">
+            <div class="img-section obscured" ng-style="item.background"></div>
+            <h1 ng-bind="item.text"></h1>
+        </div>
+
+    </div>
+    <div id="login-content">
+        <div id="data">
+            <div id="login-title" class="right" ng-click="showLogInForm = !showLogInForm">
+                <h3>Login<span class="glyphicon glyphicon-chevron-down" ng-class="{arrowUp: showLogInForm}"></span><span class="line-separator"></span></h3>
+            </div>
+            <div id="mail" ng-show="showLogInForm">
+                <form name="loginForm" ng-submit="submitLogIn()">
+                    <div class="form-validation-error" ng-if="logInError" ng-bind='logInError'></div>
+                    <div>
+                        <label for="username" class="text-uppercase">email address</label><br>
+                        <input type="email" ng-model="user.email" name="email" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Email" />
+                        <div class="form-validation-error" ng-messages="loginForm.email.$error" ng-show='loginForm.email.$dirty' role="alert">
+                            <div ng-message="email">Invalid email</div>
+                            <div ng-message="required">The email is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="password" class="text-uppercase">password</label><br>
+                        <input type="password" ng-model="user.password" name="password" required ng-model-options="{ updateOn: 'mousedown blur' }" placeholder="Password" />
+                        <div class="form-validation-error" ng-messages="loginForm.password.$error" ng-show='loginForm.password.$dirty' role="alert">
+                            <div ng-message="required">The password is required</div>
+                        </div>
+                    </div>
+                    <div class="flex-div">
+                        <div id="check">
+                            <label>
+                                <input type="checkbox" ng-model="user.rememberMe" name="rememberMe" />
+                                Remember me?
+                            </label>
+                        </div>
+                        <div id="submit">
+                            <input class="text-uppercase" type="submit" value="Login" />
+                        </div>
+                    </div>
+                    <div class="center">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </form>
+            </div>
+
+
+            <div id="create-social" class="center">
+                <div id="welcome" class="center show-content"><h1>Welcome to MyKlōvr</h1></div>
+
+                <h3>Create your account with<span class="line-separator"></span></h3>
+                <div>
+                    <a class="btn btn-block btn-social btn-facebook" ng-click="authenticate('facebook')"> <span class="fa fa-facebook"></span> Sign in with Facebook</a>
+                    <a class="btn btn-block btn-social btn-twitter" ng-click="authenticate('twitter')"> <span class="fa fa-twitter"></span> Sign in with Twitter</a>
+                    <a class="btn btn-block btn-social btn-google" ng-click="authenticate('google')"> <span class="fa fa-google"></span> Sign in with Google</a>
+                </div>
+            </div>
+
+            <div id="create-mail-title" class="center">
+                <h3 ng-click="showRegisterForm = !showRegisterForm">or with your mail<span class="glyphicon glyphicon-chevron-down" ng-class="{arrowUp: showRegisterForm}"></span><span class="line-separator"></span></h3>
+            </div>
+            <div id="create-mail" ng-show="showRegisterForm">
+                <form name="registerForm" ng-submit="submitRegister()">
+                    <div class="form-validation-error" ng-if="registerError" ng-bind='registerError'></div>
+                    <div>
+                        <label for="email" class="text-uppercase">email address</label><br>
+                        <input type="email" ng-model="user.email" name="email" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Email" />
+                        <div class="form-validation-error" ng-messages="registerForm.email.$error" ng-show='registerForm.email.$dirty' role="alert">
+                            <div ng-message="email">Invalid email</div>
+                            <div ng-message="required">The email is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="password" class="text-uppercase">chosse password</label><br>
+                        <input type="password" ng-model="user.password" name="password" ng-model-options="{ updateOn: 'mousedown blur' }" ng-minlength="8" required placeholder="At least 8 characters" />
+                        <div class="form-validation-error" ng-messages="registerForm.password.$error" ng-show='registerForm.password.$dirty' role="alert">
+                            <div ng-message="minlength">The password minimum length is 8 characters</div>
+                            <div ng-message="required">The password is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="passwordConfirmation" class="text-uppercase">confirm password</label><br>
+                        <input type="password" ng-model="user.passwordConfirmation" name="passwordConfirmation" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Password" />
+                        <div class="form-validation-error" ng-messages="registerForm.passwordConfirmation.$error" ng-show='registerForm.passwordConfirmation.$dirty' role="alert">
+                            <div ng-message="required">The password is required</div>
+                            <div ng-if="registerForm.passwordConfirmation.$dirty && user.passwordConfirmation!=user.password">The passwords must match</div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <input class="text-uppercase" type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
