@@ -11,7 +11,8 @@ import com.myklover.api.GenericAPI;
 import com.myklover.api.datainfo.user.out.SessionOut;
 import com.myklover.helpers.PropertiesHelper;
 import com.myklover.helpers.constants.MessagesConstants;
-import com.myklover.helpers.exception.BussinesException;;
+import com.myklover.helpers.exception.BussinesException;
+import com.myklover.logger.Log;;
 
 public class SessionAPI extends GenericAPI{
 
@@ -45,6 +46,7 @@ public class SessionAPI extends GenericAPI{
 			Row row  = rows.get(0);
 			Boolean updated = row.get(0,Boolean.class);
 			if (!updated){
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_SESSION_EXPIRED));
 				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_SESSION_EXPIRED));
 			}
 		}	
@@ -65,6 +67,7 @@ public class SessionAPI extends GenericAPI{
 			Row row  = rows.get(0);
 			Boolean inserted = row.get(0,Boolean.class);
 			if (!inserted){
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_SESSION_NOT_CREATED));
 				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_SESSION_NOT_CREATED));
 			}
 		}				

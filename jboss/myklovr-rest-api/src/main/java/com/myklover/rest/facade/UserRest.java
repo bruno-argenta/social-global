@@ -62,6 +62,22 @@ public class UserRest {
 		return Response.status(200).entity(resultString).build();		
 	}
 	
+	@POST
+	@Path("/loginExternalProvider")
+	@Consumes("application/json")
+	public Response loginExternalProvider(LoginRegistrationIn loginRegistration) {
+		GenericDTO result;
+		Gson gson = new Gson();
+		try {
+			String sessionToken = loginRegistrationBean.loginExternalProvider(loginRegistration);
+			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
+		} catch (Exception e) {
+			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+		}
+		String resultString = gson.toJson(result);		
+		return Response.status(200).entity(resultString).build();		
+	}
+	
 	
 	@POST
 	@Path("/verifyCode")
@@ -70,8 +86,8 @@ public class UserRest {
 		GenericDTO result;
 		Gson gson = new Gson();
 		try {
-			recoveryPasswordBean.verifyCode(verifyCode);
-			result = new GenericDTO("", AppConstants.OK_CODE);
+			Boolean valid = recoveryPasswordBean.verifyCode(verifyCode);
+			result = new GenericDTO("", AppConstants.OK_CODE,valid);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
 		}
@@ -104,8 +120,8 @@ public class UserRest {
 		GenericDTO result;
 		Gson gson = new Gson();
 		try {
-			recoveryPasswordBean.changePasswordRecovery(changePassword);
-			result = new GenericDTO("", AppConstants.OK_CODE);
+			String message = recoveryPasswordBean.changePasswordRecovery(changePassword);
+			result = new GenericDTO(message, AppConstants.OK_CODE);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
 		}

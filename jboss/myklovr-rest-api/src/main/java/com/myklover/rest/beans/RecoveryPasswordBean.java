@@ -2,14 +2,12 @@ package com.myklover.rest.beans;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import com.myklover.api.datainfo.user.in.ChangePasswordRecoveryIn;
 import com.myklover.api.datainfo.user.in.PasswordRecoveryIn;
@@ -79,11 +77,11 @@ public class RecoveryPasswordBean {
 		boolean validCode = verifyCode(verifyCode);
 		String message;
 		if (validCode){
-			String hashedPassword = CryptoHelper.hashString(changePassword.getCode());
+			String hashedPassword = CryptoHelper.hashString(changePassword.getNewPassword());
 			LoginRegistrationAPI.updatePasswordUser(changePassword.getUsername(), changePassword.getProvider(), hashedPassword);
 			message = PropertiesHelper.getStringMessageProperty(MessagesConstants.SUCCESS_PASSWORD_RECOVERY_CHANGE_PASSWORD);
 		}else{
-			message = PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_PASSWORD_RECOVERY_INVALID_CODE);
+			throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_PASSWORD_RECOVERY_INVALID_CODE));
 		}
 		return message;
 	}

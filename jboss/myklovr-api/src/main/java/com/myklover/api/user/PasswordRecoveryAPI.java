@@ -10,7 +10,8 @@ import com.myklover.api.GenericAPI;
 import com.myklover.api.datainfo.user.out.PasswordRecoveryOut;
 import com.myklover.helpers.PropertiesHelper;
 import com.myklover.helpers.constants.MessagesConstants;
-import com.myklover.helpers.exception.BussinesException;;
+import com.myklover.helpers.exception.BussinesException;
+import com.myklover.logger.Log;;
 
 public class PasswordRecoveryAPI extends GenericAPI{
 
@@ -26,13 +27,13 @@ public class PasswordRecoveryAPI extends GenericAPI{
 		for (Row row : result) {
 			resultList.add(getElement(row));
 		}
-		return resultList.get(0);	
+		return resultList.isEmpty()? null : resultList.get(0);	
 	}	
 	
 	public static void insertPasswordRecovery(String hashedCode, String username) throws BussinesException{	
 		StringBuffer statement = new  StringBuffer();
 		statement.append("INSERT INTO passwordrecovery (verificationToken,username,expirationtimestamp) ");		
-		statement.append("VALUES (?,?,?)) IF NOT EXISTS");
+		statement.append("VALUES (?,?,?) IF NOT EXISTS");
 		List<Object> args = new ArrayList<Object>();
 		Calendar expirationTime = Calendar.getInstance();
 		expirationTime.add(Calendar.MINUTE, 10);
@@ -42,6 +43,7 @@ public class PasswordRecoveryAPI extends GenericAPI{
 		try{
 			executeStatement(statement.toString(), args);
 		}catch(Exception e){
+			Log.error(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_PASSWORD_RECOVERY_CREATE_VERIFICATION_CODE),e);
 			throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_PASSWORD_RECOVERY_CREATE_VERIFICATION_CODE));	
 		}						
 	}

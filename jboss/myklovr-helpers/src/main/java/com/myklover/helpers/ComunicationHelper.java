@@ -13,8 +13,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.myklover.helpers.constants.MessagesConstants;
 import com.myklover.helpers.constants.PropertiesConstants;
 import com.myklover.helpers.exception.BussinesException;

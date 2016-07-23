@@ -10,7 +10,8 @@ import com.myklover.api.datainfo.user.in.LoginRegistrationIn;
 import com.myklover.api.datainfo.user.out.LoginRegistrationOut;
 import com.myklover.helpers.PropertiesHelper;
 import com.myklover.helpers.constants.MessagesConstants;
-import com.myklover.helpers.exception.BussinesException;;
+import com.myklover.helpers.exception.BussinesException;
+import com.myklover.logger.Log;;
 
 public class LoginRegistrationAPI extends GenericAPI{
 
@@ -27,7 +28,7 @@ public class LoginRegistrationAPI extends GenericAPI{
 		for (Row row : result) {
 			resultList.add(getElement(row));
 		}
-		return resultList.get(0);
+		return resultList.isEmpty()? null : resultList.get(0);
 	
 	}
 	
@@ -49,6 +50,7 @@ public class LoginRegistrationAPI extends GenericAPI{
 			Row row  = rows.get(0);
 			Boolean inserted = row.get(0,Boolean.class);
 			if (!inserted){
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
 				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
 			}
 		}		
@@ -71,7 +73,8 @@ public class LoginRegistrationAPI extends GenericAPI{
 			Row row  = rows.get(0);
 			Boolean inserted = row.get(0,Boolean.class);
 			if (!inserted){
-				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_UPDATE_PASSWORDCOUNTER));
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_UPDATE_PASSWORDCOUNTER));
 			}
 		}		
 		
@@ -80,7 +83,7 @@ public class LoginRegistrationAPI extends GenericAPI{
 	public static void updatePasswordUser(String userName, String provider, String password) throws Exception{
 		
 		StringBuffer statement = new  StringBuffer();
-		statement.append("UPDATE \"Login\" SET password = ? ");		
+		statement.append("UPDATE \"Login\" SET password = ? ,wrongPasswordCounter=0 ");		
 		statement.append("WHERE username= ? and provider = ? IF EXISTS");
 		List<Object> args = new ArrayList<Object>();
 		args.add(password);
@@ -92,7 +95,8 @@ public class LoginRegistrationAPI extends GenericAPI{
 			Row row  = rows.get(0);
 			Boolean inserted = row.get(0,Boolean.class);
 			if (!inserted){
-				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_USER_ALREADY_REGISTERED));
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_PASSWORD_RECOVERY_UPDATE_PASSWORD));
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_PASSWORD_RECOVERY_UPDATE_PASSWORD));
 			}
 		}		
 		

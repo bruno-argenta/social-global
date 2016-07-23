@@ -1,6 +1,6 @@
 package com.myklover.rest.beans;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.ejb.LocalBean;
@@ -17,6 +17,11 @@ import com.myklover.helpers.PropertiesHelper;
 import com.myklover.helpers.constants.MessagesConstants;
 import com.myklover.helpers.constants.PropertiesConstants;
 import com.myklover.helpers.exception.BussinesException;
+import com.myklover.rest.socialnetwork.facebook.FBAccessToken;
+import com.myklover.rest.socialnetwork.facebook.FBBasicProfile;
+import com.myklover.rest.socialnetwork.facebook.FBConnection;
+import com.myklover.rest.socialnetwork.google.GPBasicProfile;
+import com.myklover.rest.socialnetwork.google.GPConnection;
 
 @Stateless
 @LocalBean
@@ -25,7 +30,7 @@ public class LoginRegistrationBean {
 	private static final String MYKLOVR_PROVIDER = "myklovr";
 	private static final String FACEBOOK_PROVIDER = "facebook";
 	private static final String TWITTER_PROVIDER = "twitter";
-	private static final String GPLUS_PROVIDER = "gplus";
+	private static final String GPLUS_PROVIDER = "google";
 
 	public String registerUserMyKlovr(LoginRegistrationIn registrationInfo) throws Exception {
 		registrationInfo.setProvider(MYKLOVR_PROVIDER);
@@ -56,55 +61,118 @@ public class LoginRegistrationBean {
 		return registerUser(registrationInfo);
 
 	}
-	
-	
-	
 
 	public String loginUser(LoginRegistrationIn registrationInfo) throws Exception {
-		LoginRegistrationOut loginUser = LoginRegistrationAPI
-				.getUserByUserNameProvider(registrationInfo.getUsername(), registrationInfo.getProvider());
+		LoginRegistrationOut loginUser = LoginRegistrationAPI.getUserByUserNameProvider(registrationInfo.getUsername(),
+				registrationInfo.getProvider());
 		if (loginUser != null) {
 			String hashedPassword = CryptoHelper.hashString(registrationInfo.getPassword());
-			if (StringUtils.equalsIgnoreCase(hashedPassword, loginUser.getPassword()) && !loginUser.getAccountBlocked()){
-				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(), false, 0);
+			if (StringUtils.equalsIgnoreCase(hashedPassword, loginUser.getPassword())
+					&& !loginUser.getAccountBlocked()) {
+				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(), false,
+						0);
 				return createSessionUser(loginUser.getUserId());
-			}else{
-				
-				loginUser.setWrongPassCounter(loginUser.getWrongPassCounter() +1);
+			} else {
+
+				loginUser.setWrongPassCounter(loginUser.getWrongPassCounter() + 1);
 				String errorMessage;
-				if (loginUser.getWrongPassCounter() < PropertiesHelper.getIntConfigProperty(PropertiesConstants.CONFIG_USER_WRONG_PASSWORD_COUNTER)){
-					errorMessage = PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_WRONG_PASSWORD);
-					//TODO update login register
-					
-				}else{
-					errorMessage = PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_ACCOUNT_BLOCKED);
-					if (!loginUser.getAccountBlocked()){
+				if (loginUser.getWrongPassCounter() < PropertiesHelper
+						.getIntConfigProperty(PropertiesConstants.CONFIG_USER_WRONG_PASSWORD_COUNTER)) {
+					errorMessage = PropertiesHelper
+							.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_WRONG_PASSWORD);
+					// TODO update login register
+
+				} else {
+					errorMessage = PropertiesHelper
+							.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_ACCOUNT_BLOCKED);
+					if (!loginUser.getAccountBlocked()) {
 						loginUser.setAccountBlocked(true);
-						//TODO update login register
-					}				
-				};
-				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(), loginUser.getAccountBlocked(), loginUser.getWrongPassCounter());
+						// TODO update login register
+					}
+				}
+				;
+				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(),
+						loginUser.getAccountBlocked(), loginUser.getWrongPassCounter());
 				throw new BussinesException(errorMessage);
 			}
-		}else{
-			throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_WRONG_PASSWORD));
+		} else {
+			throw new BussinesException(
+					PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_WRONG_PASSWORD));
 		}
-		
+
 	}
-	
-	private String createSessionUser(UUID userId) throws BussinesException{
+
+	public String loginExternalProvider(LoginRegistrationIn registrationInfo) throws Exception {
+		String result;
+		switch (registrationInfo.getProvider()) {
+		case FACEBOOK_PROVIDER:
+			result = loginFacebook(registrationInfo);
+			break;
+		case TWITTER_PROVIDER:
+			result = loginTwitter(registrationInfo);
+			break;
+		case GPLUS_PROVIDER:
+			result = loginGoogle(registrationInfo);
+			break;
+		default:
+			throw new BussinesException(
+					PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_WRONG_PASSWORD));
+
+		}
+		return result;
+	}
+
+	private String createSessionUser(UUID userId) throws BussinesException {
 		String sessionToken = UUID.randomUUID().toString();
 		String hashedSession = CryptoHelper.hashString(sessionToken);
 		SessionAPI.insertSession(hashedSession, userId);
 		return sessionToken;
 	}
-	
-	private String registerUser(LoginRegistrationIn registrationInfo) throws Exception{
+
+	private String registerUser(LoginRegistrationIn registrationInfo) throws Exception {
 		String hashedPassword = CryptoHelper.hashString(registrationInfo.getPassword());
 		registrationInfo.setPassword(hashedPassword);
 		LoginRegistrationAPI.registerUser(registrationInfo);
-		LoginRegistrationOut user = LoginRegistrationAPI.getUserByUserNameProvider(registrationInfo.getUsername(), registrationInfo.getProvider());		
+		LoginRegistrationOut user = LoginRegistrationAPI.getUserByUserNameProvider(registrationInfo.getUsername(),
+				registrationInfo.getProvider());
 		return createSessionUser(user.getUserId());
+	}
+
+	private String loginFacebook(LoginRegistrationIn registrationInfo) throws Exception {
+		FBAccessToken accessToken = FBConnection.getAccessToken(registrationInfo.getUsername());
+		FBBasicProfile profile = FBConnection.getFBGraph(accessToken.getAccess_token());
+		LoginRegistrationOut loginUser = LoginRegistrationAPI.getUserByUserNameProvider(profile.getId(),
+				registrationInfo.getProvider());
+		if (loginUser != null){
+			return createSessionUser(loginUser.getUserId());
+		}else{
+			registrationInfo.setUsername(profile.getId());
+			return registerUser(registrationInfo);
+		}
+	}
+
+	private String loginTwitter(LoginRegistrationIn registrationInfo) throws Exception {
+		GPBasicProfile profile = GPConnection.getUserInfoJson(registrationInfo.getUsername());
+		LoginRegistrationOut loginUser = LoginRegistrationAPI.getUserByUserNameProvider(profile.getId(),
+				registrationInfo.getProvider());
+		if (loginUser != null){
+			return createSessionUser(loginUser.getUserId());
+		}else{
+			registrationInfo.setUsername(profile.getId());
+			return registerUser(registrationInfo);
+		}
+	}
+
+	private String loginGoogle(LoginRegistrationIn registrationInfo) throws Exception {
+		GPBasicProfile profile = GPConnection.getUserInfoJson(registrationInfo.getUsername());
+		LoginRegistrationOut loginUser = LoginRegistrationAPI.getUserByUserNameProvider(profile.getId(),
+				registrationInfo.getProvider());
+		if (loginUser != null){
+			return createSessionUser(loginUser.getUserId());
+		}else{
+			registrationInfo.setUsername(profile.getId());
+			return registerUser(registrationInfo);
+		}
 	}
 
 }
