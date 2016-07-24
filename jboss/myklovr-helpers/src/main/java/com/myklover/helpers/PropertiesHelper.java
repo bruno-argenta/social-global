@@ -16,6 +16,11 @@ public class PropertiesHelper {
     	return getMessage(RoutesConstants.CONFIG_PROPERTIES, key);
     }
     
+    public static String getStringConfigPropertyEncrypted(String key){
+    	String encrypted = getStringConfigProperty(key);
+    	return CryptoHelper.decryptString(encrypted);
+    }
+    
     public static int getIntConfigProperty (String key){
     	String value = getMessage(RoutesConstants.CONFIG_PROPERTIES, key);
     	int intValue = Integer.parseInt(value);

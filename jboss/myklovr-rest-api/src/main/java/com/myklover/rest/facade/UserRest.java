@@ -13,6 +13,7 @@ import com.myklover.api.datainfo.user.in.LoginRegistrationIn;
 import com.myklover.api.datainfo.user.in.PasswordRecoveryIn;
 import com.myklover.api.datainfo.user.in.VerifyCodeIn;
 import com.myklover.helpers.constants.AppConstants;
+import com.myklover.logger.Log;
 import com.myklover.rest.beans.LoginRegistrationBean;
 import com.myklover.rest.beans.RecoveryPasswordBean;
 import com.myklover.rest.dto.GenericDTO;
@@ -39,6 +40,7 @@ public class UserRest {
 			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+			e.printStackTrace();
 		}
 		String resultString = gson.toJson(result); 
 		
@@ -57,6 +59,8 @@ public class UserRest {
 			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+			Log.error(e.getMessage(), e);
+			e.printStackTrace();
 		}
 		String resultString = gson.toJson(result);		
 		return Response.status(200).entity(resultString).build();		
@@ -73,6 +77,7 @@ public class UserRest {
 			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+			e.printStackTrace();
 		}
 		String resultString = gson.toJson(result);		
 		return Response.status(200).entity(resultString).build();		
@@ -90,6 +95,7 @@ public class UserRest {
 			result = new GenericDTO("", AppConstants.OK_CODE,valid);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+			e.printStackTrace();
 		}
 		String resultString = gson.toJson(result);		
 		return Response.status(200).entity(resultString).build();		
@@ -107,6 +113,7 @@ public class UserRest {
 			result = new GenericDTO("", AppConstants.OK_CODE);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+			e.printStackTrace();
 		}
 		String resultString = gson.toJson(result);		
 		return Response.status(200).entity(resultString).build();		
@@ -124,6 +131,7 @@ public class UserRest {
 			result = new GenericDTO(message, AppConstants.OK_CODE);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
+			e.printStackTrace();
 		}
 		String resultString = gson.toJson(result);		
 		return Response.status(200).entity(resultString).build();		

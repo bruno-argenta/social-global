@@ -21,7 +21,7 @@ public class ComunicationHelper {
 
 	public static void sendEmail(String to, String subject, String text) throws BussinesException{
 		final String username = PropertiesHelper.getStringConfigProperty(PropertiesConstants.CONFIG_MAIL_USER);
-		final String password = PropertiesHelper.getStringConfigProperty(PropertiesConstants.CONFIG_MAIL_PASSWORD);
+		final String password = PropertiesHelper.getStringConfigPropertyEncrypted(PropertiesConstants.CONFIG_MAIL_PASSWORD);
 
 		Properties props = new Properties();
 		props.put(PropertiesConstants.CONFIG_MAIL_SMTP_AUTH, PropertiesHelper.getStringConfigProperty(PropertiesConstants.CONFIG_MAIL_SMTP_AUTH));

@@ -15,9 +15,9 @@ public class CassandraDriver {
 	private static final Cluster cluster = Cluster.builder()
 	                  .addContactPoint(PropertiesHelper.getStringConfigProperty(PropertiesConstants.CONFIG_DATABASE_HOST))
 	                  .withPort(PropertiesHelper.getIntConfigProperty(PropertiesConstants.CONFIG_DATABASE_PORT))
-	                  .withCredentials("myklover", "myklover")
+	                  .withCredentials(PropertiesHelper.getStringConfigPropertyEncrypted(PropertiesConstants.CONFIG_DATABASE_USERNAME), PropertiesHelper.getStringConfigPropertyEncrypted(PropertiesConstants.CONFIG_DATABASE_PASSWORD))
 	                  .build();
-	private static final Session session = cluster.connect("myklover");
+	private static final Session session = cluster.connect(PropertiesHelper.getStringConfigPropertyEncrypted(PropertiesConstants.CONFIG_DATABASE_KEYSTORE));
 		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static ResultSet executeStatement(String stringStatement, List<Object> args){
