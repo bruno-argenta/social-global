@@ -21,9 +21,13 @@ exports.requestGet = function(model,service){
 function request(options, callback, connUUID){
     http(options, function (error, response, body) {
         console.log("RESPONSE STATUSCODE JBOSS: " + response.statusCode + " RESPONSE BODY JBOSS: " + JSON.stringify(body));
+        var statusCode = response.statusCode;
+        if (statusCode === undefined){
+            statusCode = 500;
+        }
         if (!error && response.statusCode == 200) {
             var modelResponse = createResponse(body);
-            callback(modelResponse,connUUID);
+            callback(response.statusCode,modelResponse,connUUID);
         }else{
             var responseModel = {
                 OperationStatus: -1,
@@ -33,7 +37,7 @@ function request(options, callback, connUUID){
                 },
                 OperationData: ''
             }
-            callback(responseModel,connUUID);
+            callback(statusCode,responseModel,connUUID);
         }
     });
 }

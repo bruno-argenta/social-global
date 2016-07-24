@@ -10,7 +10,12 @@ exports.registerUser = function(req, res) {
     console.log("Parameteres: " + JSON.stringify(req.body));
     var connUUID = uuid.v1();
     conectionsPool[connUUID] = {request: req,response:res};
-    service.requestPost(req.body,CONSTANTS.SERVICES.USER.REGISTER_USER,response,connUUID);
+    var requestModel = {
+        username: req.body.Email,
+        provider: "myklovr",
+        password: req.body.Password
+    }
+    service.requestPost(requestModel,CONSTANTS.SERVICES.USER.REGISTER_USER,response,connUUID);
 };
 
 exports.loginUser = function(req, res) {
@@ -18,7 +23,25 @@ exports.loginUser = function(req, res) {
     console.log("Parameteres: " + JSON.stringify(req.body));
     var connUUID = uuid.v1();
     conectionsPool[connUUID] = {request: req,response:res};
-    service.requestPost(req.body,CONSTANTS.SERVICES.USER.LOGIN_USER,response,connUUID);
+    var requestModel = {
+        username: req.body.Email,
+        provider: "myklovr",
+        password: req.body.Password
+    }
+    service.requestPost(requestModel,CONSTANTS.SERVICES.USER.LOGIN_USER,response,connUUID);
+};
+
+exports.loginUserExternalProvider = function(req, res) {
+    console.log('POST loginUserExternalProvider');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var requestModel = {
+        username: req.body.code,
+        provider: req.body.provider,
+        password: ''
+    }
+    var connUUID = uuid.v1();
+    conectionsPool[connUUID] = {request: req,response:res};
+    service.requestPost(requestModel,CONSTANTS.SERVICES.USER.LOGIN_EXTERNAL,response,connUUID);
 };
 
 exports.recoveryPassword = function(req, res) {
@@ -46,9 +69,9 @@ exports.changePassword = function(req, res) {
 };
 
 
-function response(model, connUUID){
+function response(statusCode,model, connUUID){
     var conection = conectionsPool[connUUID];
     delete conectionsPool[connUUID];
     var res = conection.response;
-    res.status(200).jsonp(JSON.stringify(model));
+    res.status(statusCode).jsonp(model);
 }
