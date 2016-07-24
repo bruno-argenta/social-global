@@ -4,13 +4,13 @@ angular.module('klovr.ui.configuration.authentication', [])
     .constant('authenticationConfiguration', {
         providers: {
             google: {
-                clientId: '441960673979-n9ll57lsrj80lh9fpfj38885267a41ne.apps.googleusercontent.com'
+                clientId: '288288375615-hse0tk8cq6oqbnmn7o6f0isekjsk2475.apps.googleusercontent.com'
             },
             twitter: {
-                //no info needed
+                clientId: 'KXImyzHQevZYc97BHqkzEP8hY'//no info needed
             },
             facebook: {
-                clientId: 'Facebook App ID'
+                clientId: '1780604565560032'
             }
         }
 
