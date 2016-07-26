@@ -22,8 +22,7 @@
         width: 33.34%;
         height: 100vh;
         display: block;
-        overflow-y: scroll;
-        min-height:100vh;
+        overflow-y: auto;
         min-width: 350px;
     }
 
@@ -178,6 +177,25 @@
         height: 15px;
         border: 1px solid #cacece;
         /*margin: 8px;*/
+    }
+
+    
+    #login .okspan {
+        float: right;
+        margin-right: 6px;
+        margin-top: -33px;
+        position: relative;
+        z-index: 2;
+        color: #68a470;
+    }
+
+    #login .errspan {
+        float: right;
+        margin-right: 6px;
+        margin-top: -33px;
+        position: relative;
+        z-index: 2;
+        color: #d44e4e;
     }
 
     /* END FORM */

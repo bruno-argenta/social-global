@@ -13,8 +13,10 @@
             <label for="email" class="text-uppercase">email address</label><br>
             <input class="input" type="email" ng-model="email" name="email"
                    ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Email" />
+            <span class="fa fa-check-circle fa-2x okspan" ng-show="emailForm.email.$valid && emailForm.email.$touched"></span>
+            <span class="fa fa-exclamation-triangle fa-2x errspan" ng-show="emailForm.email.$invalid && emailForm.email.$touched"></span>
         </div>
-        <div class="form-validation-error" ng-messages="emailForm.email.$error" ng-show='emailForm.email.$touched' role="alert">
+        <div class="form-validation-error message" ng-messages="emailForm.email.$error" ng-show='emailForm.email.$touched' role="alert">
             <div ng-message="email">Invalid email</div>
             <div ng-message="required">The email is required</div>
         </div>

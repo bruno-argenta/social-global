@@ -13,3 +13,19 @@ input[type=password]:not(.hide-errors).ng-touched.ng-invalid {
     margin: 3px 0;
     text-align: center;
 }
+
+
+
+/*.errspan {
+    float: right;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: red;
+
+}
+
+.errspan::before{
+    content: "\f058";
+}*/

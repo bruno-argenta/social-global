@@ -3,7 +3,6 @@ C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Rel
 C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\bin\Klovr.UI.pdb
 C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\obj\Debug\Klovr.UI.dll
 C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\obj\Debug\Klovr.UI.pdb
-C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\obj\Debug\Klovr.UI.csprojResolveAssemblyReference.cache
 C:\Cavepot\myKlover\dev\student-global\angular\Klovr.UI\bin\Klovr.UI.dll.config
 C:\Cavepot\myKlover\dev\student-global\angular\Klovr.UI\bin\Klovr.UI.dll
 C:\Cavepot\myKlover\dev\student-global\angular\Klovr.UI\bin\Klovr.UI.pdb

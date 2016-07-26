@@ -120,11 +120,11 @@ namespace Klover.WebApiMock.Controllers
                     },
                     OperationData = new[] 
                     { 
-                        //new
-                        //{
-                        //    Contact="******123 (SMS)",
-                        //    Method = "PHONE_CODE"
-                        //},
+                        new
+                        {
+                            Contact="******123 (SMS)",
+                            Method = "PHONE_CODE"
+                        },
                         new
                         {
                             Contact ="*********@gmail.com",

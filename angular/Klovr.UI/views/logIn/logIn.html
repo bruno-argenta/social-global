@@ -19,9 +19,11 @@
             <div id="mail" ng-show="showLogInForm">
                 <form name="loginForm" ng-submit="submitLogIn()">
                     <div class="form-validation-error" ng-if="logInError" ng-bind='logInError'></div>
-                    <div>
+                    <div class="wrapper">
                         <label for="email" class="text-uppercase">email address</label><br>
                         <input type="email" ng-model="user.email" name="email" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Email" />
+                        <span class="fa fa-check-circle fa-2x okspan" ng-show="loginForm.email.$valid && loginForm.email.$touched"></span>
+                        <span class="fa fa-exclamation-triangle fa-2x errspan" ng-show="loginForm.email.$invalid && loginForm.email.$touched"></span>
                         <div class="form-validation-error" ng-messages="loginForm.email.$error" ng-show='loginForm.email.$touched' role="alert">
                             <div ng-message="email">Invalid email</div>
                             <div ng-message="required">The email is required</div>
@@ -30,6 +32,7 @@
                     <div>
                         <label for="password" class="text-uppercase">password</label><br>
                         <input type="password" ng-model="user.password" name="password" required ng-model-options="{ updateOn: 'mousedown blur' }" placeholder="Password" />
+                        <span class="fa fa-exclamation-triangle fa-2x errspan" ng-show="loginForm.password.$invalid && loginForm.password.$touched"></span>
                         <div class="form-validation-error" ng-messages="loginForm.password.$error" ng-show='loginForm.password.$touched' role="alert">
                             <div ng-message="required">The password is required</div>
                         </div>
@@ -72,6 +75,8 @@
                     <div>
                         <label for="email" class="text-uppercase">email address</label><br>
                         <input type="email" ng-model="user.email" name="email" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Email" />
+                        <span class="fa fa-check-circle fa-2x okspan" ng-show="registerForm.email.$valid && registerForm.email.$touched"></span>
+                        <span class="fa fa-exclamation-triangle fa-2x errspan" ng-show="registerForm.email.$invalid && registerForm.email.$touched"></span>
                         <div class="form-validation-error" ng-messages="registerForm.email.$error" ng-show='registerForm.email.$touched' role="alert">
                             <div ng-message="email">Invalid email</div>
                             <div ng-message="required">The email is required</div>
@@ -80,6 +85,8 @@
                     <div>
                         <label for="password" class="text-uppercase">chosse password</label><br>
                         <input type="password" ng-model="user.password" name="password" ng-model-options="{ updateOn: 'mousedown blur' }" ng-minlength="8" required placeholder="At least 8 characters" />
+                        <span class="fa fa-check-circle fa-2x okspan" ng-show="registerForm.password.$valid && registerForm.password.$touched"></span>
+                        <span class="fa fa-exclamation-triangle fa-2x errspan" ng-show="registerForm.password.$invalid && registerForm.password.$touched"></span>
                         <div class="form-validation-error" ng-messages="registerForm.password.$error" ng-show='registerForm.password.$touched' role="alert">
                             <div ng-message="minlength">The password minimum length is 8 characters</div>
                             <div ng-message="required">The password is required</div>
@@ -88,6 +95,8 @@
                     <div>
                         <label for="passwordConfirmation" class="text-uppercase">confirm password</label><br>
                         <input type="password" ng-model="user.passwordConfirmation" name="passwordConfirmation" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Password" />
+                        <span class="fa fa-check-circle fa-2x okspan" ng-show="registerForm.passwordConfirmation.$valid && registerForm.password.$touched && user.passwordConfirmation==user.password"></span>
+                        <span class="fa fa-exclamation-triangle fa-2x errspan" ng-show="registerForm.passwordConfirmation.$touched && (registerForm.passwordConfirmation.$invalid || user.passwordConfirmation!=user.password)"></span>
                         <div class="form-validation-error" ng-messages="registerForm.passwordConfirmation.$error" ng-show='registerForm.passwordConfirmation.$touched' role="alert">
                             <div ng-message="required">The password confirmation is required</div>
                             <div ng-if="registerForm.passwordConfirmation.$touched && user.passwordConfirmation!=user.password">The passwords must match</div>

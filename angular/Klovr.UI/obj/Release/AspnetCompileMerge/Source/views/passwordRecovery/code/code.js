@@ -10,7 +10,7 @@ angular.module('klovr.ui.passwordRecovery.code', ['ngRoute', 'klovr.ui.title'])
 
 }])
 
-.controller('CodeController', ['$scope', '$routeParams', '$location', '$timeout','apiClient', 'APIURLS', 'title', function ($scope, $routeParams, $location, $timeout, apiClient, APIURLS, title) {
+.controller('CodeController', ['$scope', '$routeParams', '$location', '$timeout','apiClient', 'APIURLS', 'title', 'resource', function ($scope, $routeParams, $location, $timeout, apiClient, APIURLS, title, resource) {
     title.setTitle("Recover your password");
     $scope.email = $routeParams.email;
     $scope.title = 'MyKlōver just sent a verification code via text message to ' + $routeParams.contact;
@@ -40,5 +40,13 @@ angular.module('klovr.ui.passwordRecovery.code', ['ngRoute', 'klovr.ui.title'])
     $scope.cancelUrl = function () {
         return "#!/";
     }
+    resource.getResourceImage('passwordrecovery.background.image', function (url) {
+        $scope.background = $scope.getBackgroundCSS(url);
+    });
 
+    $scope.getBackgroundCSS = function (url) {
+        return {
+            'background-image': 'url(' + url + ')'
+        };
+    }
 }]);

@@ -58,7 +58,8 @@ angular.module('klovr.ui.passwordRecovery.method', ['ngRoute', 'klovr.ui.api.cli
                     $scope.recoveryMethods.push({
                         text: text,
                         method: methods[i].Method,
-                        contact: methods[i].Contact
+                        contact: methods[i].Contact,
+                        id: "option_" + i
                     });
                 }
             } else {

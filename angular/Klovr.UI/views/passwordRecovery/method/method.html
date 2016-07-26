@@ -10,10 +10,10 @@
         <div class="form-validation-error" ng-if="error" ng-bind='error'></div>
 
             <label ng-repeat="method in recoveryMethods" class="group-input">
-            <input name='methodRadios' type="radio" ng-model="$parent.selectedMethod" ng-value="method" required />
-                <label for="methodRadios" ng-bind="method.text"></label>
+                <input id="{{method.id}}" name='methodRadios' type="radio" ng-model="$parent.selectedMethod" ng-value="method" required />
+                <label for="{{method.id}}" ng-bind="method.text"></label>
         </label>
-        <div class="form-validation-error" ng-messages="methodsForm.methodRadios.$error" ng-show='submitPressed' role="alert">
+        <div class="form-validation-error message" ng-messages="methodsForm.methodRadios.$error" ng-show='submitPressed' role="alert">
             <div ng-message="required">Please select a recovery method</div>
         </div>
             <div class="commands">
