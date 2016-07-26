@@ -1,0 +1,5 @@
+C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\bin\Klovr.UI.dll.config
+C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\bin\Klovr.UI.dll
+C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\bin\Klovr.UI.pdb
+C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\obj\Release\Klovr.UI.dll
+C:\Users\alex\Desktop\Vertex Ray\Vertex Source 2012\Dynamize - Klovr\Release\Release Code\Source Code\Klovr.UI\obj\Release\Klovr.UI.pdb

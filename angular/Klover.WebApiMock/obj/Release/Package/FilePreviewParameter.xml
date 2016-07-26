@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="klovr/WebApi" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\alex\\Desktop\\Vertex\ Ray\\Vertex\ Source\ 2012\\Dynamize\ -\ Klovr\\Release\\Release\ Code\\Source\ Code\\Klover\.WebApiMock\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\alex\\Desktop\\Vertex\ Ray\\Vertex\ Source\ 2012\\Dynamize\ -\ Klovr\\Release\\Release\ Code\\Source\ Code\\Klover\.WebApiMock\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>

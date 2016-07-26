@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <title>Klovr</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function checkoption(e) {
+            $("input[type='checkbox']").attr('disabled', 'disabled');
+            $("input[type='checkbox']").removeAttr('checked');
+            $("#" + e.target.parentElement.parentElement.parentElement.id + " input[type='checkbox']").removeAttr('disabled');
+        }
+
+        function next() {
+            $("input[type='radio']:checked input[type='checkbox']:checked")
+            var cookie = [];
+            $("#" + $("input[type='radio']:checked").parent().parent().parent().attr("id") + " input[type='checkbox']:checked").each(function (i, e) { cookie.push($(e).attr("id")); })
+            localStorage.setItem("prupose", cookie);
+            window.location.href = "Students.html";
+        }
+    </script>
+</head>
+<body>
+    <header>
+    </header>
+    <div class="content">
+        <div class="title">
+            <h3>Which option represents you best?</h3>
+        </div>
+        <div class="options">
+            <div id="option-student" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/student.png" class="option-img" />
+                    </div>
+                    <div class="option-input">
+                        <input id="option1" type="radio" name="option" value="student" onchange="checkoption(event)">
+                        <label for="option1">Student looking for:</label>
+                    </div>
+                </div>
+                <div class="option-list">
+                    <ul>
+                        <li>
+                            <input id="student1" type="checkbox" name="student_1" value="student_1" disabled="disabled">
+                            <label for="student1">Academic Recommendations</label>
+                        </li>
+                        <li>
+                            <input id="student2" type="checkbox" name="student_2" value="student_2" disabled="disabled">
+                            <label for="student2">Personal Recommendations</label>
+                        </li>
+                        <li>
+                            <input id="student3" type="checkbox" name="student_3" value="student_3" disabled="disabled">
+                            <label for="student3">Professional Recommendations</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-parents" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/parents.png" class="option-img" />
+                    </div>
+                    <div class="option-input">
+                        <input id="option2" type="radio" name="option" value="parents" onchange="checkoption(event)">
+                        <label for="option2">Parents looking for:</label>
+                    </div>
+                </div>
+                <div class="option-list">
+                    <ul>
+                        <li>
+                            <input id="parents1" type="checkbox" name="parents_1" value="parents_1" disabled="disabled">
+                            <label for="parents1">Academic Recommendations for my Child</label>
+                        </li>
+                        <li>
+                            <input id="parents2" type="checkbox" name="parents_2" value="parents_2" disabled="disabled">
+                            <label for="parents2">Personal Recommendations for my Child</label>
+                        </li>
+                        <li>
+                            <input id="parents3" type="checkbox" name="parents_3" value="parents_3" disabled="disabled">
+                            <label for="parents3">Professional Recommendations for my Child</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-school" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/school.png" class="option-img" />
+                    </div>
+                    <div class="option-input">
+                        <input id="option3" type="radio" name="option" value="School" onchange="checkoption(event)">
+                        <label for="option3">School or University looking for:</label>
+                    </div>
+                </div>
+                <div class="option-list">
+                    <ul>
+                        <li>
+                            <input id="school1" type="checkbox" name="school_1" value="school_1" disabled="disabled">
+                            <label for="school1">Enhanced Student Enrollment</label>
+                        </li>
+                        <li>
+                            <input id="school2" type="checkbox" name="school_2" value="school_2" disabled="disabled">
+                            <label for="school2">Student Retention</label>
+                        </li>
+                        <li>
+                            <input id="school3" type="checkbox" name="school_3" value="school_3" disabled="disabled">
+                            <label for="school3">Increase Student and School Ranking</label>
+                        </li>
+                        <li>
+                            <input id="school4" type="checkbox" name="school_4" value="school_4" disabled="disabled">
+                            <label for="school4">Interpretation of 1st or 3rd party data layered with myKlovr machine learning data</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-company" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/company.png" class="option-img" />
+                    </div>
+                    <div class="option-input">
+                        <input id="option4" type="radio" name="option" value="company" onchange="checkoption(event)">
+                        <label for="option4">Company looking for:</label>
+                    </div>
+                </div>
+                <div class="option-list">
+                    <ul>
+                        <li>
+                            <input id="company1" type="checkbox" name="company_1" value="company_1" disabled="disabled">
+                            <label for="company1">Sell goods and products</label>
+                        </li>
+                        <li>
+                            <input id="company2" type="checkbox" name="company_2" value="company_2" disabled="disabled">
+                            <label for="company2">Advertising & Promotion</label>
+                        </li>
+                        <li>
+                            <input id="company3" type="checkbox" name="company_3" value="company_3" disabled="disabled">
+                            <label for="company3">HR support/Recruiting</label>
+                        </li>
+                        <li>
+                            <input id="company4" type="checkbox" name="company_4" value="company_4" disabled="disabled">
+                            <label for="company4">Place Job Postings</label>
+                        </li>
+                        <li>
+                            <input id="company5" type="checkbox" name="company_5" value="company_5" disabled="disabled">
+                            <label for="company5">Onboarding Solutions</label>
+                        </li>
+                        <li>
+                            <input id="company6" type="checkbox" name="company_6" value="company_6" disabled="disabled">
+                            <label for="company6">Market Research Surveys</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-educator" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/educator.png" class="option-img" />
+                    </div>
+                    <div class="option-input">
+                        <input id="option5" type="radio" name="option" value="educator" onchange="checkoption(event)">
+                        <label for="option5">Educator/Tutor looking for:</label>
+                    </div>
+                </div>
+                <div class="option-list">
+                    <ul>
+                        <li>
+                            <input id="educator1" type="checkbox" name="educator_1" value="educator_1" disabled="disabled">
+                            <label for="educator1">Connect to Students</label>
+                        </li>
+                        <li>
+                            <input id="educator2" type="checkbox" name="educator_2" value="educator_2" disabled="disabled">
+                            <label for="educator2">Teaching and Tutoring Opportunities</label>
+                        </li>
+                        <li>
+                            <input id="educator3" type="checkbox" name="educator_3" value="educator_3" disabled="disabled">
+                            <label for="educator3">Share Expertise Knowledge</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <button type="button" class="btn-next" onclick="next()">NEXT</button>
+        </footer>
+    </div>
+</body>
+</html>

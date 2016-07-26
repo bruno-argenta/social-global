@@ -89,6 +89,7 @@
     <Content Include="Assets\LogIn\image-2.jpg" />
     <Content Include="Assets\LogIn\image-3.jpg" />
     <Content Include="Assets\LogIn\image-4.jpg" />
+    <Content Include="Assets\PasswordRecovery\background.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -105,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\klovr.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

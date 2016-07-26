@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		
+	<link href='https://fonts.googleapis.com/css?family=Roboto:100,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <!--<script type="text/javascript" src="countries.json"></script>-->
+    <script src="BasicUserInfoPage.js" type="text/javascript"></script>
+    
+    <script src="calendar/js/moment.min.js" type="text/javascript"></script>
+    <script src="calendar/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link href="calendar/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="BasicUserInfoPage.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <header></header>
+    <div class="content">
+        <div class="title">
+            <h3>Student Information</h3>
+        </div>
+        <div class="profile-progress">
+            <div class="profile-img"></div>
+            <p>Profile <span class="p-green">5%</span> Complete</p>
+        </div>
+        <div class="students-img">
+        </div>
+        <div class="profile">
+            <div class="profile-photo">
+                <div class="profile-UpImg"></div>
+                <p class="text-uppercase">upload profile image</p>
+            </div>
+            <div class="form">
+                <div class="section">
+					<input class="required" id="firstName" type="text" placeholder="First Name" required />
+                    <input class="required" id="lastName" type="text" placeholder="Last Name" required />
+                    <div class='input-group date' id='birth'>
+                        <input type='text' class="form-control required"  placeholder="Birth Date" required/>
+                        <span class="input-group-addon"><img class="icon" src="imgs/calendario.png" alt="calendar" title="calendar"></span>
+                    </div>
+                </div>
+                <div class="section">
+                    <input id="nickname" type="text" placeholder="Nickname" />
+                    <input class="required" id="mobile" type="text" placeholder="Mobile Number" required />
+                    <input class="required" id="grade" type="text" placeholder="Grade" required />
+                </div>
+                <div class="section">
+                    <select class="required-select" id="country" name="Country" >
+                      <option value="" disabled selected>Country</option>
+                      <option value="UY">Uruguay</option>
+                      <option value="USA">Estados Unidos</option>
+                      <option value="BR">Brasil</option>
+                      <option value="ANY">Otro</option>
+                    </select>
+                    <select class="required-select" id="state" name="State">
+                    <option value="" disabled selected>State</option>
+                      <option value="W">Washington</option>
+                      <option value="O">Ohio</option>
+                      <option value="C">California</option>
+                      <option value="V">Virginia</option>
+                    </select>
+                    <input class="required" id="city" type="text" placeholder="City" required />
+                </div>
+                <div class="section">
+                    <input class="required" id="zip" type="text" placeholder="Zip Code" required />
+                    <div class="option-input">
+                        <input id="male" type="radio" name="gender" value="male" checked>
+                        <label for="male">Male</label>
+                        <input id="female" type="radio" name="gender" value="female" checked>
+                        <label for="male">Female</label>
+                    </div>
+                </div>
+                <div class="section required" id="section5">
+                    <p >Fields Required</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <a class="btn-back" href="TypeUser.html">Back</a>
+            <input class="text-uppercase btn-next" type="button" value="Next" onclick="window.location.href = 'PurposeStudent13.html';" />
+        </footer>
+    </div>
+</body>
+</html>

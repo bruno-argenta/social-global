@@ -1,0 +1,27 @@
+﻿
+<link href="/assets/css/viewSpecific/passwordRecovery/passwordRecovery.css" rel="stylesheet" />
+<link href="assets/css/viewSpecific/passwordRecovery/method.css" rel="stylesheet" />
+<div id="method" ng-style="background">
+    <div class="layer-opacity"></div>
+    <div class="logo"></div>
+    <div class="box">
+    <h3>Recover your password</h3>
+    <form name="methodsForm" ng-submit="submit()">
+        <div class="form-validation-error" ng-if="error" ng-bind='error'></div>
+
+            <label ng-repeat="method in recoveryMethods" class="group-input">
+            <input name='methodRadios' type="radio" ng-model="$parent.selectedMethod" ng-value="method" required />
+                <label for="methodRadios" ng-bind="method.text"></label>
+        </label>
+        <div class="form-validation-error" ng-messages="methodsForm.methodRadios.$error" ng-show='submitPressed' role="alert">
+            <div ng-message="required">Please select a recovery method</div>
+        </div>
+            <div class="commands">
+        <input class="text-uppercase" type="submit" value="Continue" ng-click="submitPressed=true" />
+            <a ng-href="{{cancelUrl()}}" class="cancel">Cancel</a>
+        </div>
+        
+
+    </form>
+</div>
+</div>

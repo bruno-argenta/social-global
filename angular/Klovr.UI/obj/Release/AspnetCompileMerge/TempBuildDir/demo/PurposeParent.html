@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <title>Klovr</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cookie = localStorage.getItem("prupose").split(',');
+            if ($.inArray("parents1", cookie) < 0) {
+                $("#option-academic input[type='checkbox']").attr('disabled', 'disabled');
+                $("#option-academic img").addClass('opacity');
+                $("#option-academic h3").addClass('opacity');
+                //$("#option-academic input[type='checkbox']").css("display", "none");
+            }
+            if ($.inArray("parents3", cookie) < 0) {
+                $("#option-professional input[type='checkbox']").attr('disabled', 'disabled');
+                $("#option-professional img").addClass('opacity');
+                $("#option-professional h3").addClass('opacity');
+            }
+            if ($.inArray("parents2", cookie) < 0) {
+                $("#option-personal input[type='checkbox']").attr('disabled', 'disabled');
+                $("#option-personal img").addClass('opacity');
+                $("#option-personal h3").addClass('opacity');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header></header>
+    <div id="prupose" class="content">
+        <div class="title">
+            <h3>How may myKlovr assist you and your child?</h3>
+        </div>
+        <div class="profile-progress">
+            <div class="profile-imgparent"></div>
+            <p>Profile <span class="p-green">10%</span> Complete</p>
+        </div>
+        <div class="options">
+            <div id="option-academic" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/academic.png" class="option-img" />
+                        <h3>Academic Growth</h3>
+                    </div>
+                </div>
+                <div id="list-academic" class="option-list">
+                    <ul>
+                        <li>
+                            <input id="academic1" type="checkbox" name="academic1" value="academic1">
+                            <label for="academic1">Review Childs Curriculum and Performance</label>
+                        </li>
+                        <li>
+                            <input id="academic2" type="checkbox" name="academic2" value="academic2">
+                            <label for="academic2">General Class Help (Homework, Tests, Projects)</label>
+                        </li>
+                        <li>
+                            <input id="academic3" type="checkbox" name="academic3" value="academic3">
+                            <label for="academic3">Finding a Tutor or Expert</label>
+                        </li>
+                        <li>
+                            <input id="academic4" type="checkbox" name="academic4" value="academic4">
+                            <label for="academic4">Taking Standardized Tests</label>
+                        </li>
+                        <li>
+                            <input id="academic5" type="checkbox" name="academic5" value="academic5">
+                            <label for="academic5">Course Selection</label>
+                        </li>
+                        <li>
+                            <input id="academic6" type="checkbox" name="academic6" value="academic6">
+                            <label for="academic6">Resources to discuss Child's Future Plans</label>
+                        </li>
+                        <li>
+                            <input id="academic7" type="checkbox" name="academic7" value="academic7">
+                            <label for="academic7">Researching the Right College for your Child</label>
+                        </li>
+                        <li>
+                            <input id="academic8" type="checkbox" name="academic8" value="academic8">
+                            <label for="academic8">College Application Process</label>
+                        </li>
+                        <li>
+                            <input id="academic9" type="checkbox" name="academic9" value="academic9">
+                            <label for="academic9">Selecting a Magor or Career Path</label>
+                        </li>
+                        <li>
+                            <input id="academic10" type="checkbox" name="academic10" value="academic10">
+                            <label for="academic10">Transitioning Into College Life</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-professional" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/professional.png" class="option-img" />
+                        <h3>Professional Growth</h3>
+                    </div>
+                </div>
+                <div id="list-professional2" class="option-list">
+                    <ul>
+                        <li>
+                            <input id="professional1" type="checkbox" name="professional1" value="professional1">
+                            <label for="professional1">Setting Career Goals</label>
+                        </li>
+                        <li>
+                            <input id="professional2" type="checkbox" name="professional2" value="professional2">
+                            <label for="professional2">Interview Skills</label>
+                        </li>
+                        <li>
+                            <input id="professional3" type="checkbox" name="professional3" value="professional3">
+                            <label for="professional3">Job Application (Resume, Cover Letter, Portfolio, Personal Statement)</label>
+                        </li>
+                        <li>
+                            <input id="professional4" type="checkbox" name="professional4" value="professional4">
+                            <label for="professional4">Networking Events</label>
+                        </li>
+                        <li>
+                            <input id="professional5" type="checkbox" name="professional5" value="professional5">
+                            <label for="professional5">Financial Aid</label>
+                        </li>
+                        <li>
+                            <input id="professional6" type="checkbox" name="professional6" value="professional6">
+                            <label for="professional6">Job Search</label>
+                        </li>
+                        <li>
+                            <input id="professional7" type="checkbox" name="professional7" value="professional7">
+                            <label for="professional7">Transitioning into Professional Life (Business Communications and Etiquette)</label>
+                        </li>
+                        <li>
+                            <input id="professional8" type="checkbox" name="professional8" value="professional8">
+                            <label for="professional8">Continued Learning Options</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-personal" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/personal.png" class="option-img" />
+                        <h3>Personal Growth</h3>
+                    </div>
+                </div>
+                <div id="list-personal" class="option-list">
+                    <ul>
+                        <li>
+                            <input id="personal1" type="checkbox" name="personal1" value="personal1">
+                            <label for="personal1">Improving Health and Fitness</label>
+                        </li>
+                        <li>
+                            <input id="personal2" type="checkbox" name="personal2" value="personal2">
+                            <label for="personal2">Finding friends with similar interests</label>
+                        </li>
+                        <li>
+                            <input id="personal3" type="checkbox" name="personal3" value="personal3">
+                            <label for="personal3">Managing Relationships and Friendships</label>
+                        </li>
+                        <li>
+                            <input id="personal4" type="checkbox" name="personal14" value="personal4">
+                            <label for="personal4">Exploring New Hobbies</label>
+                        </li>
+                        <li>
+                            <input id="personal4" type="checkbox" name="personal14" value="personal4">
+                            <label for="personal4">Selecting Volunteer and Extracurricular Activities</label>
+                        </li>
+                        <li>
+                            <input id="personal4" type="checkbox" name="personal14" value="personal4">
+                            <label for="personal4">Handling Stress and Anxiety</label>
+                        </li>
+                        <li>
+                            <input id="personal4" type="checkbox" name="personal14" value="personal4">
+                            <label for="personal4">Calender of Relevant Events</label>
+                        </li>
+                        <li>
+                            <input id="personal4" type="checkbox" name="personal14" value="personal4">
+                            <label for="personal4">Time Management</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <a class="btn-back" href="#">Back</a>
+            <button type="button" class="btn-next">NEXT</button>
+        </footer>
+    </div>
+</body>
+</html>

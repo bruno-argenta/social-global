@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <title>Klovr</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function select(e) {
+            $(".aside-left li .selected").removeClass("selected");
+            $("#" + e.target.parentElement.id + " span").addClass("selected");
+        }
+    </script>
+</head>
+<body id="home">
+    <header>
+        <div class="search">
+            <span class="menu"></span>
+            <input class="input-search" type="text" />
+            <span class="loupe"></span>
+        </div>
+        <div class="menu-notification">
+            <span class="mail"></span>
+            <span class="notification"></span>
+            <span class="user"></span>
+        </div>
+    </header>
+    <div class="content">
+        <div class="aside-left">
+            <span class="user-img"></span>
+            <ul>
+                <li id="menu1" onclick="select(event)"><span class="selected"></span><a href="#">My Recommendations</a></li>
+                <li id="menu2" onclick="select(event)" )><span></span><a href="#">My Academic Tools</a></li>
+                <li id="menu3" onclick="select(event)"><span></span><a href="#">My Professional Tools</a></li>
+                <li id="menu4" onclick="select(event)"><span></span><a href="#">My Personal Tools</a></li>
+                <li id="menu5" onclick="select(event)"><span></span><a href="#">My Market Place</a></li>
+            </ul>
+        </div>
+        <div class="nav-top">
+            <div class="gadget">
+                <span class="gadgets"></span>
+                <span id="pointer1" class="pointer"></span>
+                <span id="pointer2" class="pointer"></span>
+                <span id="pointer3" class="pointer"></span>
+                <span id="gadget1" class="gadget-name">Academic</span>
+                <span id="gadget2" class="gadget-name">Professional</span>
+                <span id="gadget3" class="gadget-name">Personal</span>
+            </div>
+            <div class="chart">
+                <span class="graph"></span>
+                <ul class="values">
+                    <li>1000</li>
+                    <li>750</li>
+                    <li>500</li>
+                    <li>250</li>
+                    <li>0</li>
+                </ul>
+                <ul class="years">
+                    <li>2013</li>
+                    <li>2014</li>
+                    <li>2015</li>
+                    <li>2016</li>
+                </ul>
+                <span class="score-point"></span>
+                <span class="ref"></span>
+                <ul class="list-ref">
+                    <li>Klovr Score</li>
+                    <li>National Average</li>
+                    <li>You are here</li>
+                    <li>Goal</li>
+                </ul>
+                <span class="score">560</span>
+            </div>
+        </div>
+        <div class="aside-right"></div>
+    </div>
+    <footer></footer>
+</body>
+</html>

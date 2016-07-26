@@ -18,6 +18,11 @@ namespace Klover.WebApiMock.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class RecoveryMethodEmail
+    {
+        public string Email { get; set; }
+    }
+
     public class RecoveryPassword
     {
         public string Email { get; set; }

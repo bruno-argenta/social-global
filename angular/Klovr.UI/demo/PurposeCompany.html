@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,900italic,900,700italic,700,500italic,500,400italic,400,300italic,100italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <title>Klovr</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cookie = localStorage.getItem("prupose").split(',');
+            if ($.inArray("parents1", cookie) < 0) {
+                $("#option-recruit input[type='checkbox']").attr('disabled', 'disabled');
+                $("#option-recruit img").addClass('opacity');
+                $("#option-recruit h3").addClass('opacity');
+            }
+            if ($.inArray("parents3", cookie) < 0) {
+                $("#option-professional input[type='checkbox']").attr('disabled', 'disabled');
+                $("#option-professional img").addClass('opacity');
+                $("#option-professional h3").addClass('opacity');
+            }
+            if ($.inArray("parents2", cookie) < 0) {
+                $("#option-personal input[type='checkbox']").attr('disabled', 'disabled');
+                $("#option-personal img").addClass('opacity');
+                $("#option-personal h3").addClass('opacity');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header></header>
+    <div id="prupose" class="content">
+        <div class="title">
+            <h3>How may myKlovr assist you Company?</h3>
+        </div>
+        <div class="options">
+            <div id="option-recruit" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/recruit.png" class="option-img" />
+                        <h3>Recruiting</h3>
+                    </div>
+                </div>
+                <div id="list-recruit" class="option-list">
+                    <ul>
+                        <li>
+                            <input id="recruit1" type="checkbox" name="recruit1" value="recruit1">
+                            <label for="recruit1">Search for Quality Candidates</label>
+                        </li>
+                        <li>
+                            <input id="recruit2" type="checkbox" name="recruit2" value="recruit2">
+                            <label for="recruit2">Better Training for New Hires</label>
+                        </li>
+                        <li>
+                            <input id="recruit3" type="checkbox" name="recruit3" value="recruit3">
+                            <label for="recruit3">Personalized Assistance for Candidates</label>
+                        </li>
+                        <li>
+                            <input id="recruit4" type="checkbox" name="recruit4" value="recruit4">
+                            <label for="recruit4">Continue Education for Employees</label>
+                        </li>
+                        <li>
+                            <input id="recruit5" type="checkbox" name="recruit5" value="recruit5">
+                            <label for="recruit5">Improve Retention Rate</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-market" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/market.png" class="option-img" />
+                        <h3>Market Research</h3>
+                    </div>
+                </div>
+                <div id="list-market" class="option-list">
+                    <ul>
+                        <li>
+                            <input id="market1" type="checkbox" name="market1" value="market1">
+                            <label for="market1">Understand Labor Market Trends</label>
+                        </li>
+                        <li>
+                            <input id="market2" type="checkbox" name="market2" value="market2">
+                            <label for="market2">Access to Data Insights and Interpretation</label>
+                        </li>
+                        <li>
+                            <input id="market3" type="checkbox" name="market3" value="market3">
+                            <label for="market3">Understand Best Business Practices</label>
+                        </li>
+                        <li>
+                            <input id="market4" type="checkbox" name="market4" value="market4">
+                            <label for="market4">Identify Schools to Target</label>
+                        </li>
+                        <li>
+                            <input id="market5" type="checkbox" name="market5" value="market5">
+                            <label for="market5">Identify Student Populations to Target</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="option-promoting" class="option">
+                <div class="option-head">
+                    <div class="option-div">
+                        <img src="img/promoting.png" class="option-img" />
+                        <h3>Promoting</h3>
+                    </div>
+                </div>
+                <div id="list-promoting" class="option-list">
+                    <ul>
+                        <li>
+                            <input id="promoting1" type="checkbox" name="promoting1" value="promoting1">
+                            <label for="promoting1">Post Jobs and Internships</label>
+                        </li>
+                        <li>
+                            <input id="promoting2" type="checkbox" name="promoting2" value="promoting2">
+                            <label for="promoting2">Advertise</label>
+                        </li>
+                        <li>
+                            <input id="promoting3" type="checkbox" name="promoting3" value="promoting3">
+                            <label for="promoting3">Share Resources and Information</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <a class="btn-back" href="#">Back</a>
+            <button type="button" class="btn-next">NEXT</button>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿
+<link href="/assets/css/viewSpecific/passwordRecovery/passwordRecovery.css" rel="stylesheet" />
+<link href="/assets/css/viewSpecific/passwordRecovery/getAddress.css" rel="stylesheet" />
+
+<div id="getAddress" ng-style="background">
+    <div class="layer-opacity"></div>
+    <div class="logo"></div>
+    <div class="box">
+    <h3>Recover your password</h3>
+    <form name="emailForm" ng-submit="submit()">
+        <div class="form-validation-error" ng-if="error" ng-bind='error'></div>
+        <div class="group-input">
+            <label for="email" class="text-uppercase">email address</label><br>
+            <input class="input" type="email" ng-model="email" name="email"
+                   ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Email" />
+        </div>
+        <div class="form-validation-error" ng-messages="emailForm.email.$error" ng-show='emailForm.email.$touched' role="alert">
+            <div ng-message="email">Invalid email</div>
+            <div ng-message="required">The email is required</div>
+        </div>
+            <div class="commands">
+        <input class="text-uppercase" type="submit" value="Continue" />
+            <a ng-href="{{cancelUrl()}}" class="cancel">Cancel</a>
+        </div>
+
+    </form>
+</div>
+</div>

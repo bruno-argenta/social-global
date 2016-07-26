@@ -1,0 +1,36 @@
+﻿<link href="assets/css/viewSpecific/passwordRecovery/code.css" rel="stylesheet" />
+<div>
+    <h3 ng-bind="title"></h3>
+    
+
+    <form name="codeForm" ng-submit="submit()">
+        <div class="form-validation-error" ng-if="error" ng-bind='error'></div>
+
+        <label for="code">Enter that code here</label>
+        <input type="text" ng-model="code" name="code" ng-model-options="{ updateOn: 'mousedown blur' }" required placeholder="Code" />
+        <div class="form-validation-error" ng-messages="codeForm.code.$error" ng-show='codeForm.code.$touched' role="alert">
+            <div ng-message="required">The code is required</div>
+        </div>
+
+        <div>
+            <span>
+                Didn’t get the text message? Sometimes it can take up to 15 minutes. If it’s been longer than that, <a ng-href="{{forgotPasswordMethodUrl()}}">try again</a> or try <a ng-href="{{forgotPasswordMethodUrl()}}">via recovery email</a> resetting your password.
+            </span>
+        </div>
+        <div>
+            <input type="submit" value="Continue" />
+            <a ng-href="{{cancelUrl()}}">Cancel</a>
+        </div>
+
+    </form>
+
+
+    <div>
+        <span>We have sent to your recovery email account reset instructions.</span>
+    </div>
+
+    <div>
+        <span>Didn’t receive the password reset email? Check your spam folder for an email from no-reply@accounts.myklovr.com
+    </span>
+    </div>
+</div>

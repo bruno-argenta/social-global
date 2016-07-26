@@ -1,6 +1,7 @@
 ﻿using Klover.WebApiMock.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,13 +11,17 @@ namespace Klovr.WebApiMock.Controllers
 {
     public class ResourceController : ApiController
     {
-        private const string BASE_URL = "http://localhost:63811/";
+        private static string BASE_URL = ConfigurationManager.AppSettings["BaseUrl"];
+
+
+
         private static Dictionary<string, string> imageResource = new Dictionary<string, string>()
         {
             {"login.scroller1.image","Assets/LogIn/image-1.jpg"},
             {"login.scroller2.image","Assets/LogIn/image-2.jpg"},
             {"login.scroller3.image","Assets/LogIn/image-3.jpg"},
             {"login.scroller4.image","Assets/LogIn/image-4.jpg"},
+            {"passwordrecovery.background.image","Assets/PasswordRecovery/background.png"},
         };
 
         private static Dictionary<string, string> textResource = new Dictionary<string, string>()

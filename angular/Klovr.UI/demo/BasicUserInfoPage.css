@@ -1,0 +1,242 @@
+﻿
+body, html {
+    height: 100%;
+    font-family: Roboto;
+    font-size: 14px;
+    margin: 0;
+}
+
+header {
+    background: url("img/Logo.png") no-repeat;
+    background-position: 8%;
+    width: calc(100% - 5px);
+    height: 5%;
+    min-height: 80px;
+    box-shadow: 3px 5px 6px #ccc;
+    display: flex;
+}
+
+footer {
+    float: right;
+    text-align: right;
+}
+
+.content {
+    margin: 0 auto;
+    width: 83%;
+}
+
+
+.title {
+    display: inline-block;
+    'margin: 0 0 100px;
+}
+
+    .title h3 {
+        font-size: 24px;
+        color: #6697c7;
+        margin-top: 30px;
+        font-weight: normal;
+    }
+
+.btn-back {
+    font-size: 20px;
+    color: #27c3f6;
+    text-decoration: underline;
+    vertical-align: bottom;
+    margin-right: 40px;
+}
+
+.btn-next {
+    width: 130px;
+	height: 40px;
+    background-color: #68a470;
+    border: none;
+    color: white;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+
+    .btn-next:hover {
+        background-color: #598c5f;
+    }
+
+    .btn-next:active, .btn-next:focus {
+        background-color: #49724e;
+        outline: none;
+    }
+
+.profile-progress {
+    float: right;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.profile-img {
+    height: 140px;
+    background: url("imgs/UserProfile.png") no-repeat;
+}
+
+.p-green {
+    color: #68a470;
+    font-weight: bold;
+}
+
+.parents-img {
+    background: url("imgs/Parents.png") no-repeat;
+    margin: 0 auto;
+    height: 380px;
+    width: 540px;
+}
+
+.students-img {
+    background: url("imgs/Estudiantes.png") no-repeat;
+    margin: 0 auto;
+    height: 380px;
+    width: 540px;
+}
+
+.company-img {
+    background: url("imgs/Company.png") no-repeat;
+    margin: 0 auto;
+    height: 380px;
+    width: 540px;
+}
+
+.profile {
+    display: flex;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.profile-photo {
+    margin-top: 15px;
+    width: 25%;
+    text-align: center;
+}
+
+.profile-UpImg {
+    height: 225px;
+    background: url("imgs/UploadImg.png") no-repeat;
+    margin: 0 auto;
+    width: 130px;
+}
+
+.profile-photo p {
+    font-size: 20px;
+    color: #cacaca;
+}
+
+.form {
+    width: 75%;
+}
+
+.section {
+    display: flex;
+    margin: 0 auto;
+}
+
+#section5 {
+    margin-top: 50px;
+}
+
+#state, #city, #zip {
+    display: none;
+}
+
+.section input, .section select, .section .option-input, .section p, .section .input-group, .chosen-container, .chosen-container-single {
+    margin: 15px 10px 15px;
+    width: 30%;
+    min-width: 200px;
+    height: 40px;
+    padding-left: 20px;
+    border: 1px solid #5c5c5c;
+}
+
+.section p {
+    height: 20px;
+    border: none;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.section .form-control {
+    border-radius: 0px;
+}
+
+.section .input-group-addon {
+    background-color: transparent;
+    border: none;
+}
+
+.section .input-group-addon {
+    position: absolute;
+    top: 12px;
+    right: 19px;
+    transition: right 0.2s;
+    z-index: 3;
+}
+
+.section.input-group {
+      display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+/*----------------------------------------------*/
+.section .option-input input {
+    width: 15%;
+    min-width: 50px;
+    margin-left: 0px;
+}
+
+.section .option-input, .section .input-group {
+    padding: 0;
+    margin: 0;
+    border: none
+}
+
+
+input[type=radio]:not(old) {
+    width: 24px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+    input[type=radio]:not(old) + label {
+        display: inline-block;
+        margin-left: -28px;
+        padding-left: 35px;
+        height: 30px;
+        background: url('imgs/radio.png') no-repeat 0 0;
+        line-height: 35px;
+    }
+
+    input[type=radio]:not(old):checked + label {
+        background: url('imgs/radiochk.png') no-repeat 0 0;
+    }
+
+.section label {
+    font-weight: 400;
+}
+
+.required {
+    background-image: url(imgs/asterisco.png);
+    background-position: 5px;
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+    text-indent: 0px;
+}
+
+.section .required-select {
+    appearance: none;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    background: url(imgs/asterisco.png) no-repeat left, url(imgs/downArrow.png) no-repeat right;
+    background-size: 8px 8px ,32px 32px;
+    background-position-x: 5px, 100%;
+}

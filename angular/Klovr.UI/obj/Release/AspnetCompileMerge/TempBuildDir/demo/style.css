@@ -1,0 +1,626 @@
+﻿html, body {
+    height: 100%;
+    font-family: Roboto;
+    font-size: 14px;
+    margin: 0;
+}
+
+header {
+    background:url("img/logo.png") no-repeat;
+    background-position: 8%;
+    width: calc(100% - 5px);
+    height: 5%;
+    min-height: 80px;
+    box-shadow: 3px 5px 6px #ccc;
+    display: flex;
+}
+
+footer {
+    float: right;
+    text-align: right;
+}
+
+.content {
+    width: 83%;
+    margin: 0 auto;
+}
+
+.title {
+    display: inline-block;
+    margin: 50px 0;
+}
+
+.title h3 {
+    font-size: 24px;
+    color: #6697c7;
+    font-weight: normal;
+}
+
+.btn-back {
+}
+
+.btn-next {
+}
+
+.options {
+    display: flex;
+    width: 100%;
+    height: 600px;
+}
+
+.option-head {
+    margin: 0 auto;
+}
+
+.option-head label{
+    color: #333333;
+    font-size: 16px;
+}
+
+.option-input {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.option-img {
+    width: 150px;
+    height: 150px;
+}
+
+.option-div {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.option {
+    margin: 0 15px;
+}
+
+input[type=radio]:not(old){
+    width   : 24px;
+    margin  : 0;
+    padding : 0;
+    opacity : 0;
+}
+
+input[type=checkbox]:not(old){
+    width   : 28px;
+    min-width: 28px;
+    margin  : 0;
+    padding : 0;
+    opacity : 0;
+}
+
+input[type=radio]:not(old) + label {
+    display      : inline-block;
+    margin-left  : -28px;
+    padding-left : 28px;
+    height: 24px;
+    background   : url('img/radio.png') no-repeat 0 0;
+    background-size: contain;
+    line-height  : 24px;
+}
+
+input[type=checkbox]:not(old) + label {
+    display      : inline-block;
+    height: 24px;
+    margin-left  : -28px;
+    padding-left : 28px;
+    background   : url('img/check.png') no-repeat 0 0;
+    background-size: contain;
+    line-height  : 24px;
+    width: 100%;
+    color: #333333;
+}
+
+input[type=checkbox]:not(old):checked + label{
+    background : url('img/checkchk.png') no-repeat 0 0;
+    background-size: contain;
+}
+
+input[type=checkbox]:not(old):disabled + label{
+    background : url('img/checkdisabled.png') no-repeat 0 0;
+    background-size: contain;
+    color: rgba(51, 51, 51, 0.5);
+}
+
+input[type=radio]:not(old):checked + label{
+    background : url('img/radiochk.png') no-repeat 0 0;
+    background-size: contain;
+}
+
+ul {
+    list-style: none;
+}
+
+#option-student {
+    width: 300px
+}
+
+#option-parents {
+    width: 350px
+}
+
+#option-school {
+    width: 355px
+}
+
+#option-company {
+    width: 300px
+}
+
+#option-educator {
+    width: 300px
+}
+
+.btn-next {
+    width: 130px;
+	height: 40px;
+    background-color: #68a470;
+    border: none;
+    color: white;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+
+.btn-next:hover{
+	background-color:#598c5f;
+}
+.btn-next:active, .btn-next:focus{
+	background-color:#49724e;
+	outline: none;
+}
+
+#prupose .option {
+    width: 100%;
+}
+
+#prupose .option-div {
+    width: 180px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.option-div h3 {
+    color: #68a470;
+    margin: 0;
+    font-size: 18px;
+}
+
+#prupose .option-list {
+    margin: 0 auto;
+}
+
+#list-academic {
+    width: 340px;
+}
+
+#list-professional {
+    width: 200px;525px
+}
+
+#list-personal {
+    width: 350px;
+}
+
+.profile-progress {
+    float: right;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+}
+.profile-img {
+    height: 140px;
+    background:url("img/profile.png") no-repeat;
+}
+
+.p-green {
+    color: #68a470;
+    font-weight: bold;
+}
+
+#prupose .option {
+}
+
+#prupose .title {
+    margin: 0 0 100px;
+}
+
+.btn-back {
+    font-size: 20px;
+    color: #27c3f6;
+    text-decoration: underline;
+    vertical-align: text-top;
+    margin-right: 50px;
+}
+
+#list-professional2 {
+    width: 525px;
+}
+
+.profile-img16 {
+    height: 140px;
+    background:url("img/profile16.png") no-repeat;
+}
+
+.profile-imgparent {
+    height: 140px;
+    background:url("img/profileparent.png") no-repeat;
+}
+
+/*#prupose footer {
+    position: absolute;
+    float: left;
+    text-align: left;
+    bottom: 50px;
+    right: 170px;
+}*/
+
+#prupose .option-head {
+    height: 200px;
+}
+
+.opacity {
+    opacity: 0.5;
+}
+
+#home header {
+    background-position: 4%;
+}
+
+#home footer{
+    float: initial;
+    text-align: initial;
+    position: fixed;
+    height: 20px;
+    background: gray;
+    width: 100%;
+}
+
+#home .content {
+    display: flex;
+    height: calc(100% - 100px);
+    margin: 5px 0 0;
+    width: 100%;
+}
+
+#home .aside-left {
+    height: 100%;
+    width: 17%;
+    background: #e9ebee;
+    margin-left: 5px;
+}
+
+#home .nav-top {
+    height: 200px;
+    width: 83%;
+    display: flex;
+    border-bottom: solid 1px #b8b9bc;
+}
+
+#home .aside-right {
+    width: 254px;
+    height: calc(100% - 300px);
+    background-image: url('img/userlist.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 14px;
+    right: 2px;
+}
+
+.search {
+    margin: 0 auto;
+    width: 500px;
+    display: flex;
+    position: relative;
+    top: 20px;
+    left: 150px;
+}
+
+.menu {
+    background-image: url('img/hamburger.png');
+    background-repeat: no-repeat;
+    height: 41px;
+    width: 41px;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.input-search {
+    height: 37px;
+    width: 356px;
+    margin-left: 5px;
+    font-size: 16px;
+    padding-left: 10px;
+    border: solid 1px;
+    padding-right: 45px;
+}
+
+.loupe {
+    background: url(img/loupe.png) no-repeat;
+    height: 41px;
+    width: 41px;
+    background-size: contain;
+    cursor: pointer;
+    position: relative;
+    left: -41px;
+}
+
+.menu-notification {
+    display: flex;
+    position: relative;
+    top: 20px;
+    width: 300px;
+}
+
+.menu-notification span {
+    margin-right: 40px;
+}
+
+.mail {
+    background-image: url('img/mail.png');
+    background-repeat: no-repeat;
+    height: 41px;
+    width: 41px;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.notification {
+    background-image: url('img/notification.png');
+    background-repeat: no-repeat;
+    height: 41px;
+    width: 41px;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.user {
+    background-image: url('img/user.png');
+    background-repeat: no-repeat;
+    height: 41px;
+    width: 41px;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.user-img {
+    background-image: url('img/profilebig.png');
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 200px;
+    background-size: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.aside-left ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aside-left li:hover {
+    background-color: #cacbcd;
+}
+
+.aside-left li:last-child
+{
+    border-bottom: solid 1px #b8b9bc;
+}
+
+.aside-left li {
+    border-top: solid 1px #b8b9bc;
+    display: flex;
+}
+
+.aside-left li a {
+    display: block;
+    color: #000;
+    padding: 14px 40px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Change the link color on hover */
+.aside-left li a:hover {
+    'background-color: #cacbcd;
+}
+
+.selected {
+    background: #6697c7!important;
+}
+
+.aside-left li span {
+    background: #ffffff;
+    width: 10px;
+    display: block;
+    height: 50px;
+}
+
+.chart {
+    display: flex;
+    position: absolute;
+    right: 75px;
+    padding-top: 15px;
+}
+
+.ref {
+    background-image: url('img/ref.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 23px;
+    height: 127px;
+    display: block;
+}
+
+.chart .list-ref {
+    margin-top: 3px;
+    padding-left: 0;
+}
+
+.chart .list-ref li {
+    margin-bottom: 16px;
+}
+
+.graph {
+    background-image: url('img/graph.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 187px;
+    height: 173px;
+    display: block;
+    margin-right: 0px;
+    margin-top: -5px;
+}
+
+.score-point {
+    background-image: url('img/bluepoint.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 31px;
+    height: 31px;
+    display: block;
+    position: absolute;
+    top: 67px;
+    left: 141px;
+}
+
+.values {
+    position: absolute;
+    top: -4px;
+    left: -75px;
+    text-align: right;
+}
+
+.values li {
+    margin-bottom: 26px;
+    font-size: 12px;
+}
+
+.years {
+    position: absolute;
+    top: 168px;
+    left: -8px;
+}
+
+.years li {
+    display: inline-block;
+    margin-right: 11px;
+    font-size: 12px;
+}
+
+.score {  
+    width: 65px;
+    height: 38px;
+    display: block;
+    background: #289ffb;
+    position: absolute;
+    top: 148px;
+    right: 30px;
+    color: white;
+    padding: 6px 0px 0 20px;
+    font-size: 26px;
+}
+
+.gadgets {
+    background-image: url('img/gadgets.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 601px;
+    height: 140px;
+    display: block;
+    margin-left: 310px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.pointer {
+    background-image: url('img/aguja.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 68px;
+    height: 68px;
+    display: block;
+}
+
+#pointer1 {
+    top: -113px;
+    position: relative;
+    left: 336px;
+}
+
+#pointer2 {
+    top: -183px;
+    position: relative;
+    left: 585px;
+    -ms-transform: rotate(73deg);
+    -webkit-transform: rotate(73deg);
+    transform: rotate(73deg);
+}
+
+#pointer3 {
+    -ms-transform: rotate(-56deg);
+    -webkit-transform: rotate(-56deg);
+    transform: rotate(-56deg);
+    top: -221px;
+    position: relative;
+    left: 763px;
+}
+
+.gadget-name {    
+    width: 86px;
+    height: 23px;
+    display: block;
+    background: #289ffb;
+    /* position: absolute; */
+    /* top: 148px; */
+    /* left: 106px; */
+    color: white;
+    /* padding: 6px 0px 0 20px; */
+    font-size: 14px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+#gadget1 {
+    position: relative;
+    top: -205px;
+    left: 349px;
+}
+
+#gadget2 {
+    position: relative;
+    top: -233px;
+    left: 568px;
+}
+
+#gadget3 {
+    position: relative;
+    top: -261px;
+    left: 784px;
+}
+
+#list-recruit {
+    width: 320px;
+}
+
+#list-market {
+    width: 320px;
+}
+
+#list-promoting {
+    width: 280px;
+}

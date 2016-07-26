@@ -2,15 +2,22 @@
 
 angular.module('klovr.ui.api.urls', [])
     .constant('APIURLS', {
-        apiBaseUrl: 'http://localhost:3000',//without an / at the end
+        apiBaseUrl: 'http://localhost:3000/api',//without an / at the end
         authentication: {
-            login: '/api/user/LoginUser',
-            externalLogin: '/api/user/LoginUserExternalProvider',
-            registration: '/api/user/RegisterUser',
+            login: '/user/LoginUser',
+            externalLogin: '/user/LoginUserExternalProvider',
+            registration: '/user/RegisterUser',
+        },
+        passwordRecovery:{
+            methods: '/user/RecoveryMethods',
+            requestRecovery: '/user/RecoveryPassword',
+            changePassword: '/user/ChangePasswordRecovery',
+            validateCode: '/user/ValidateCode ',
+
         },
         resource: {
-            image: '/api/resource/GetResource',
-            text: '/api/resource/GetResourceText'
+            image: '/resource/GetResource',
+            text: '/resource/GetResourceText'
         }
 
     });

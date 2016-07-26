@@ -46,7 +46,7 @@ namespace Klover.WebApiMock.Controllers
                     }
                 };
             }
-            
+
             return Ok(res);
         }
 
@@ -63,7 +63,7 @@ namespace Klover.WebApiMock.Controllers
                     Message = new Message
                     {
                         Text = "Invalid info",
-                        Level = "Success"
+                        Level = "Error"
                     },
                     OperationData = null
                 };
@@ -85,7 +85,54 @@ namespace Klover.WebApiMock.Controllers
                 };
             }
 
-            
+
+            return Ok(res);
+        }
+
+
+        [HttpGet]
+        public IHttpActionResult RecoveryMethods([FromUri]RecoveryMethodEmail request)
+        {
+
+            Response res;
+            if (request.Email.ToLower().Contains("error"))
+            {
+                res = new Response()
+                {
+                    OperationStatus = -1,
+                    Message = new Message
+                    {
+                        Text = "Invalid email",
+                        Level = "Error"
+                    },
+                    OperationData = null
+                };
+            }
+            else
+            {
+                res = new Response()
+                {
+                    OperationStatus = 0,
+                    Message = new Message
+                    {
+                        Text = "Success",
+                        Level = "Success"
+                    },
+                    OperationData = new[] 
+                    { 
+                        //new
+                        //{
+                        //    Contact="******123 (SMS)",
+                        //    Method = "PHONE_CODE"
+                        //},
+                        new
+                        {
+                            Contact ="*********@gmail.com",
+                            Method = "EMAIL"
+                        }
+                    }
+                };
+            }
             return Ok(res);
         }
 
@@ -108,16 +155,35 @@ namespace Klover.WebApiMock.Controllers
         [HttpPost]
         public IHttpActionResult ValidateCode([FromBody] ValidateCode request)
         {
-            var res = new Response()
+
+            Response res;
+            if (request.ValidationCode.ToLower().Contains("error"))
             {
-                OperationStatus = 0,
-                Message = new Message
+                res = new Response()
                 {
-                    Text = "Success",
-                    Level = "Success"
-                },
-                OperationData = new { }
-            };
+                    OperationStatus = -1,
+                    Message = new Message
+                    {
+                        Text = "Invalid code",
+                        Level = "Error"
+                    },
+                    OperationData = null
+                };
+            }
+            else
+            {
+                res = new Response()
+                {
+                    OperationStatus = 0,
+                    Message = new Message
+                    {
+                        Text = "Success",
+                        Level = "Success"
+                    },
+                    OperationData = new { }
+                };
+            }
+
             return Ok(res);
         }
 
@@ -146,7 +212,7 @@ namespace Klover.WebApiMock.Controllers
             var res = new Response()
             {
                 OperationStatus = 0,
-                Message =  new Message
+                Message = new Message
                 {
                     Text = "Success",
                     Level = "Success"
@@ -161,6 +227,6 @@ namespace Klover.WebApiMock.Controllers
             return Ok(res);
         }
 
-        
+
     }
 }
