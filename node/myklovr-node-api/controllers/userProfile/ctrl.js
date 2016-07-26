@@ -11,11 +11,19 @@ exports.getBasicUserInfoProfile = function(req, res) {
     var connUUID = uuid.v1();
     conectionsPool[connUUID] = {request: req,response:res};
     var requestModel = {
-        username: req.body.Email,
-        provider: "myklovr",
-        password: req.body.Password
+        sessionToken: req.body.Email,
     }
-    service.requestPost(requestModel,CONSTANTS.SERVICES.USER.REGISTER_USER,response,connUUID);
+
+    var responseModel = {
+        OperationStatus:'',
+        Message: {
+            Text:'',
+            Level:'',
+        },
+        OperationData: ''
+    }
+
+    //service.requestPost(requestModel,CONSTANTS.SERVICES.USER.REGISTER_USER,response,connUUID);
 };
 
 
