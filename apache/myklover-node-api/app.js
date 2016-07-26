@@ -44,13 +44,17 @@ router.route('/user/loginUser')
 router.route('/user/loginUserExternalProvider')
     .post(userCtrl.loginUserExternalProvider);
 
+router.route('/user/RecoveryMethods')
+    .get(userCtrl.getRecoveryMethods)
+
 router.route('/user/recoveryPassword')
     .post(userCtrl.recoveryPassword);
 
 router.route('/user/validateCode')
     .post(userCtrl.validateCode);
 
-router.route('/user/changePassword')
+
+router.route('/user/changePasswordRecovery')
     .post(userCtrl.changePassword);
 
 router.route('/resource/getResource')

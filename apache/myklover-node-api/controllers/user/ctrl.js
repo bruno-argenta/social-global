@@ -48,8 +48,39 @@ exports.recoveryPassword = function(req, res) {
     console.log('POST recoveryPassword');
     console.log("Parameteres: " + JSON.stringify(req.body));
     var connUUID = uuid.v1();
+    var requestModel = {
+        username: req.body.Email,
+        method: req.body.Mode,
+    }
     conectionsPool[connUUID] = {request: req,response:res};
-    service.requestPost(req.body,CONSTANTS.SERVICES.USER.RECOVERY_PASSWORD,response,connUUID);
+    service.requestPost(requestModel,CONSTANTS.SERVICES.USER.RECOVERY_PASSWORD,response,connUUID);
+};
+
+
+exports.getRecoveryMethods = function(req, res) {
+    var responseModel = {
+        OperationStatus: -1,
+        Message :
+        {
+            Text:"Email not found",
+            Level: "Error"
+        },
+        OperationData: null
+    }
+
+    var email = req.param("Email");
+
+    if (email != undefined){
+        email =  email.slice(email.lastIndexOf('@'));
+        responseModel.OperationStatus =0;
+        responseModel.Message.Text = "Success";
+        responseModel.Message.Level = "Success";
+        responseModel.OperationData = [{
+            Contact:"*********"+email,
+            Method:"EMAIL"
+        }]
+    }
+    res.status(200).jsonp(responseModel);
 };
 
 exports.validateCode = function(req, res) {
@@ -65,8 +96,16 @@ exports.changePassword = function(req, res) {
     console.log("Parameteres: " + JSON.stringify(req.body));
     var connUUID = uuid.v1();
     conectionsPool[connUUID] = {request: req,response:res};
-    service.requestPost(req.body,CONSTANTS.SERVICES.USER.CHANGE_PASSWORD,response,connUUID);
+    var requestModel = {
+        username: req.body.Email,
+        newPassword: req.body.Password,
+        code: req.body.ValidationCode,
+        provider: '',
+    }
+    console.log(JSON.stringify(requestModel));
+    service.requestPost(requestModel,CONSTANTS.SERVICES.USER.CHANGE_PASSWORD,response,connUUID);
 };
+
 
 
 function response(statusCode,model, connUUID){
