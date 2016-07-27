@@ -5,7 +5,7 @@ angular.module('klovr.ui.api.client', ['klovr.ui.api.urls'])
 
       return {
           get: function (url, parameters, successCallback, errorCallback) {
-              $http.get(APIURLS.apiBaseUrl + url, { params: parameters })
+              $http.get(APIURLS.apiBaseUrl + url, { params: parameters, withCredentials: true })
                 .then(function (response) {
                     if (successCallback) {
                         successCallback(response);
@@ -22,6 +22,7 @@ angular.module('klovr.ui.api.client', ['klovr.ui.api.urls'])
                   method: 'POST',
                   data: data,
                   url: APIURLS.apiBaseUrl + url,
+                  withCredentials: true,
                   headers: {
                       'Content-Type': "application/json"
                   },
