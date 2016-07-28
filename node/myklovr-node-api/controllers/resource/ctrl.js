@@ -5,16 +5,16 @@ var uuid = require('node-uuid');
 
 var conectionsPool = [];
 var resourcesText = [];
-resourcesText["user.scroller1.text"] = "text1";
-resourcesText["user.scroller2.text"] ="text2";
-resourcesText["user.scroller3.text"] ="text3";
-resourcesText["user.scroller4.text"] = "text4";
+resourcesText["login.scroller1.text"] = "text1";
+resourcesText["login.scroller2.text"] ="text2";
+resourcesText["login.scroller3.text"] ="text3";
+resourcesText["login.scroller4.text"] = "text4";
 
 var resources = [];
-resources["user.scroller1.image"] = "img/LogIn/image-1.jpg";
-resources["user.scroller2.image"] = "img/LogIn/image-2.jpg";
-resources["user.scroller3.image"] = "img/LogIn/image-3.jpg";
-resources["user.scroller4.image"] = "img/LogIn/image-4.jpg";
+resources["login.scroller1.image"] = "img/LogIn/image-1.jpg";
+resources["login.scroller2.image"] = "img/LogIn/image-2.jpg";
+resources["login.scroller3.image"] = "img/LogIn/image-3.jpg";
+resources["login.scroller4.image"] = "img/LogIn/image-4.jpg";
 resources["passwordrecovery.background.image"] = "img/PasswordRecovery/background.png";
 
 exports.getResource = function(req, res) {

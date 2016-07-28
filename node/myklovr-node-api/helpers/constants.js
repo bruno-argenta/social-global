@@ -12,7 +12,7 @@ exports.CONFIG = Object.freeze({
 exports.SERVICES = Object.freeze({
     USER:{
         REGISTER_USER: apppath + "/user/register",
-        LOGIN_USER: apppath + "/user/user",
+        LOGIN_USER: apppath + "/user/login",
         LOGIN_EXTERNAL: apppath + "/user/loginExternalProvider",
         VALIDATE_CODE:  apppath + "/user/verifyCode",
         RECOVERY_PASSWORD: apppath + "/user/recoveryPassword",

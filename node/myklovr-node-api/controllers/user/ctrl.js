@@ -9,7 +9,7 @@ exports.registerUser = function(req, res) {
     console.log('POST registerUser');
     console.log("Parameteres: " + JSON.stringify(req.body));
     var connUUID = uuid.v1();
-    conectionsPool[connUUID] = {request: req,response:res};
+    conectionsPool[connUUID] = {request: req,response:res,createCookie:true};
     var requestModel = {
         username: req.body.Email,
         provider: "myklovr",
@@ -22,7 +22,7 @@ exports.loginUser = function(req, res) {
     console.log('POST loginUser');
     console.log("Parameteres: " + JSON.stringify(req.body));
     var connUUID = uuid.v1();
-    conectionsPool[connUUID] = {request: req,response:res};
+    conectionsPool[connUUID] = {request: req,response:res,createCookie:true};
     var requestModel = {
         username: req.body.Email,
         provider: "myklovr",
@@ -40,7 +40,7 @@ exports.loginUserExternalProvider = function(req, res) {
         password: ''
     }
     var connUUID = uuid.v1();
-    conectionsPool[connUUID] = {request: req,response:res};
+    conectionsPool[connUUID] = {request: req,response:res,createCookie:true};
     service.requestPost(requestModel,CONSTANTS.SERVICES.USER.LOGIN_EXTERNAL,response,connUUID);
 };
 
@@ -67,7 +67,9 @@ exports.getRecoveryMethods = function(req, res) {
         },
         OperationData: null
     }
+    var sessionToken = req.cookies.sessionToken;
 
+    console.log('SessionToken: '+sessionToken);
     var email = req.param("Email");
 
     if (email != undefined){
@@ -109,8 +111,12 @@ exports.changePassword = function(req, res) {
 
 
 function response(statusCode,model, connUUID){
-    var conection = conectionsPool[connUUID];
+    var connection = conectionsPool[connUUID];
     delete conectionsPool[connUUID];
-    var res = conection.response;
+    var res = connection.response;
+    if ((connection.createCookie) && (statusCode == 200)){
+        res.cookie('sessionToken',model.OperationData, { maxAge: 900000, httpOnly: true });
+        console.log('Save cookie: '+model.OperationData);
+    }
     res.status(statusCode).jsonp(model);
 }
