@@ -4,8 +4,7 @@ var userCtrl = require('./controllers/user/ctrl.js');
 var userProfileCtrl = require('./controllers/userProfile/ctrl.js');
 var dictionariesCtrl = require('./controllers/dictionaries/ctrl.js');
 var resourceCtrl = require('./controllers/resource/ctrl.js');
-var cookieParser = require('cookie-parser')
-
+var cookieParser = require('cookie-parser');
 
 var express = require("express"),
     app = express(),
@@ -44,12 +43,26 @@ app.use(function (req, res, next) {
 
 var router = express.Router();
 
+
+app.get('/', function(req, res){
+    console.log('entre');
+    res.send('<form method="post" enctype="multipart/form-data" action="/api/resource/uploadUserProfileImage">'
+        + '<p>Image: <input type="file" name="image" /></p>'
+        + '<p><button type="submit" value="Upload" /></p>'
+        + '</form>');
+});
+
+
 /*** resources ***/
 router.route('/resource/getResource')
     .get(resourceCtrl.getResource);
 
 router.route('/resource/getResourceText')
     .get(resourceCtrl.getResourceText)
+
+router.route('/resource/uploadUserProfileImage')
+    .post(resourceCtrl.uploadUserProfileImage)
+
 
 /*** USER LOGIN-REGISTRATION METHODS***/
 

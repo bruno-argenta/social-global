@@ -5,7 +5,9 @@ exports.CONFIG = Object.freeze({
     JBOSS_PORT: 8081,
     JBOSS_HOST: "localhost",
     APACHE_HOST: "localhost",
-    APACHE_PORT: 61116
+    APACHE_PORT: 61116,
+    RESOURCE_PATH: "resource/",
+    IMAGE_PATH: "image/"
 });
 
 

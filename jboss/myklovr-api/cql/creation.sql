@@ -1,4 +1,4 @@
-CREATE KEYSPACE myklover
+CREATE KEYSPACE myklovr
 WITH durable_writes = true
 AND replication = {
 	'class' : 'NetworkTopologyStrategy',
@@ -6,7 +6,7 @@ AND replication = {
 };
 
 
-CREATE TABLE myklover."Login" (
+CREATE TABLE myklovr.login (
 	userId uuid,
 	userName text,
 	provider text,
@@ -17,17 +17,57 @@ CREATE TABLE myklover."Login" (
 	PRIMARY KEY (provider,userName)
 )
 
-CREATE TABLE myklover.session (
+CREATE TABLE myklovr.session (
 	sessiontoken text,
 	userid uuid,
 	expirationtimestamp timestamp,
 	PRIMARY KEY (sessiontoken)
 );
 
-CREATE TABLE myklover.passwordrecovery (
+CREATE TABLE myklovr.passwordrecovery (
 	username text,
 	verificationtoken text,
 	expirationtimestamp timestamp,
 	PRIMARY KEY (verificationtoken)
 );
 
+
+CREATE TABLE myklovr.country (
+	code text,
+	name text,
+	PRIMARY KEY (code)
+);
+
+CREATE TABLE myklovr.state (
+	country_code text,
+	code text,
+	name text,
+	PRIMARY KEY (country_code, code)
+);
+
+CREATE TABLE myklovr.industry_type (
+	code uuid,
+	name text,
+	PRIMARY KEY (code)
+);
+
+CREATE TABLE myklovr.subjects (
+	code uuid,
+	name text,
+	PRIMARY KEY (code)
+);
+
+CREATE TABLE myklovr.school_type (
+	code uuid,
+	name text,
+	PRIMARY KEY (code)
+);
+
+
+CREATE TABLE myklovr.user_profile (
+	userid uuid,
+	user_kind text,
+	section text,
+	value MAP<text, text>,
+	PRIMARY KEY (userid, user_kind, section)
+)

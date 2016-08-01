@@ -14,6 +14,8 @@ public class MessagesConstants {
 	public static final String ERROR_PASSWORD_RECOVERY_INVALID_METHOD = "error.password.recovery.invalidMethod";
 	public static final String ERROR_PASSWORD_RECOVERY_INVALID_CODE = "error.password.recovery.invalidVerificationCode";
 	public static final String ERROR_SEND_MAIL = "error.send.email";
+	public static final String ERROR_DICTIONARY_NOT_FOUND = "error.dictionary.notFound";
+	public static final String ERROR_SECTION_NOT_FOUND = "error.section.notFound";
 	
 	
 	public static final String SUCCESS_PASSWORD_RECOVERY_SEND_EMAIL = "success.password.recovery.sendEmail";
