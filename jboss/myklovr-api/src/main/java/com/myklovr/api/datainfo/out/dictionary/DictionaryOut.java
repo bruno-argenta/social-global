@@ -1,4 +1,4 @@
-package com.myklovr.api.datainfo.dictionaries.out;
+package com.myklovr.api.datainfo.out.dictionary;
 
 public class DictionaryOut {
 

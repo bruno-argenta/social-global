@@ -1,4 +1,4 @@
-package com.myklovr.api.datainfo.user.in;
+package com.myklovr.api.datainfo.in.user;
 
 public class LoginRegistrationIn {
 

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import com.myklovr.api.datainfo.dictionaries.in.DictionaryIn;
-import com.myklovr.api.datainfo.dictionaries.out.DictionaryOut;
+import com.myklovr.api.datainfo.in.dictionary.DictionaryIn;
+import com.myklovr.api.datainfo.out.dictionary.DictionaryOut;
 import com.myklovr.api.dictionaries.DictionariesAPI;
 
 @Stateless

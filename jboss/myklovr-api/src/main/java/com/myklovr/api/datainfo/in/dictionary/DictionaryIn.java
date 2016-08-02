@@ -1,4 +1,4 @@
-package com.myklovr.api.datainfo.dictionaries.in;
+package com.myklovr.api.datainfo.in.dictionary;
 
 public class DictionaryIn {
 

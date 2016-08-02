@@ -1,6 +1,6 @@
 package test;
 
-import com.myklovr.api.datainfo.user.in.LoginRegistrationIn;
+import com.myklovr.api.datainfo.in.user.LoginRegistrationIn;
 import com.myklovr.api.user.LoginRegistrationAPI;
 
 public class MaintTest {

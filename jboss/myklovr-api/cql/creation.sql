@@ -71,3 +71,23 @@ CREATE TABLE myklovr.user_profile (
 	value MAP<text, text>,
 	PRIMARY KEY (userid, user_kind, section)
 )
+
+
+ALTER TABLE myklovr.login
+add name text;
+
+ALTER TABLE myklovr.login
+add urlimage text;
+
+ALTER TABLE myklovr.login
+add nextpage text;
+
+ALTER TABLE myklovr.login
+add kind text;
+
+ALTER TABLE myklovr.session
+add username text;
+
+ALTER TABLE myklovr.session
+add provider text;
+

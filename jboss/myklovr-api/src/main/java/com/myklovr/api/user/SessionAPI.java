@@ -2,13 +2,14 @@ package com.myklovr.api.user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.myklovr.api.GenericAPI;
-import com.myklovr.api.datainfo.user.out.SessionOut;
+import com.myklovr.api.datainfo.SessionDI;
 import com.myklovr.helpers.PropertiesHelper;
 import com.myklovr.helpers.constants.MessagesConstants;
 import com.myklovr.helpers.exception.BussinesException;
@@ -18,13 +19,13 @@ public class SessionAPI extends GenericAPI{
 
 	
 	
-	public static List<SessionOut> getSessionByToken(String sessionToken){
+	public static List<SessionDI> getValidSessionByToken(String sessionToken){
 		StringBuffer statement = new StringBuffer();
-		statement.append("SELECT userid,sessiontoken,expirationtimestamp FROM session WHERE sessiontoken= ? ");
+		statement.append("SELECT userid,sessiontoken,expirationtimestamp,username,provider FROM session WHERE sessiontoken= ? ");
 		List<Object> args = new ArrayList<Object>();
 		args.add(sessionToken);
 		ResultSet result = executeStatement(statement.toString(), args);
-		List<SessionOut> resultList = new ArrayList<SessionOut>();
+		List<SessionDI> resultList = new ArrayList<SessionDI>();
 		for (Row row : result) {
 			resultList.add(getElement(row));
 		}
@@ -36,10 +37,11 @@ public class SessionAPI extends GenericAPI{
 		StringBuffer statement = new  StringBuffer();
 		Calendar expirationTime = Calendar.getInstance();
 		expirationTime.add(Calendar.DATE, 3);
-		statement.append("UPDATE session set expirationtimestamp = ? WHERE sessiontoken = ? ");		
-		statement.append(" IF NOT EXISTS");
-		List<Object> args = new ArrayList<Object>();
+		statement.append("UPDATE session set expirationtimestamp = ? WHERE sessiontoken = ?");		
+		statement.append(" IF EXISTS");
+		List<Object> args = new ArrayList<Object>();		
 		args.add(expirationTime.getTime());
+		args.add(sessionToken);
 		ResultSet result = executeStatement(statement.toString(), args);
 		List<Row> rows = result.all();
 		if (!rows.isEmpty()){
@@ -54,13 +56,15 @@ public class SessionAPI extends GenericAPI{
 	
 	
 	
-	public static void insertSession(String sessionToken, UUID userId) throws BussinesException{	
+	public static void insertSession(String sessionToken, UUID userId, String username, String provider) throws BussinesException{	
 		StringBuffer statement = new  StringBuffer();
-		statement.append("INSERT INTO session (sessiontoken,userid,expirationtimestamp) ");		
-		statement.append("VALUES (?,?,toTimestamp(now())) IF NOT EXISTS");
+		statement.append("INSERT INTO session (sessiontoken,userid,expirationtimestamp,username,provider) ");		
+		statement.append("VALUES (?,?,toTimestamp(now()),?,?) IF NOT EXISTS");
 		List<Object> args = new ArrayList<Object>();
 		args.add(sessionToken);
-		args.add(userId);				
+		args.add(userId);	
+		args.add(username);
+		args.add(provider);
 		ResultSet result = executeStatement(statement.toString(), args);
 		List<Row> rows = result.all();
 		if (!rows.isEmpty()){
@@ -73,11 +77,20 @@ public class SessionAPI extends GenericAPI{
 		}				
 	}
 	
-	private static SessionOut getElement(Row row) {
-		SessionOut result = new SessionOut();				
-		result.setUserId(row.getUUID(0));
-		result.setSessionToken(row.getString(1));
-		result.setExpirationTimestamp(row.getTimestamp(2));
+	private static SessionDI getElement(Row row) {
+		Calendar today = Calendar.getInstance();
+		Calendar sessionCalendar = Calendar.getInstance();
+		Date session = row.getTimestamp(2);
+		sessionCalendar.setTime(session);
+		SessionDI result = null;
+		if (sessionCalendar.after(today)){
+			result = new SessionDI();
+			result.setUserId(row.getUUID(0));
+			result.setSessionToken(row.getString(1));
+			result.setExpirationTimestamp(session);
+			result.setUsername(row.getString(3));
+			result.setProvider(row.getString(4));
+		}		
 		return result;		
 	}
 	

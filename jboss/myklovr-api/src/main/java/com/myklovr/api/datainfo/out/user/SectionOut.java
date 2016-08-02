@@ -1,8 +1,8 @@
-package com.myklovr.api.datainfo.user.in;
+package com.myklovr.api.datainfo.out.user;
 
 import java.util.Map;
 
-public class SectionIn {
+public class SectionOut {
 
 	private String sectionName;
 	private Map<String,String> values;

@@ -7,7 +7,7 @@ import java.util.List;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.myklovr.api.GenericAPI;
-import com.myklovr.api.datainfo.user.out.PasswordRecoveryOut;
+import com.myklovr.api.datainfo.PasswordRecoveryDI;
 import com.myklovr.helpers.PropertiesHelper;
 import com.myklovr.helpers.constants.MessagesConstants;
 import com.myklovr.helpers.exception.BussinesException;
@@ -17,13 +17,13 @@ public class PasswordRecoveryAPI extends GenericAPI{
 
 	
 	
-	public static PasswordRecoveryOut getPasswordRecoveryByToken(String verificationToken){
+	public static PasswordRecoveryDI getPasswordRecoveryByToken(String verificationToken){
 		StringBuffer statement = new StringBuffer();
 		statement.append("SELECT username,verificationtoken,expirationtimestamp FROM passwordrecovery WHERE verificationtoken= ? ");
 		List<Object> args = new ArrayList<Object>();
 		args.add(verificationToken);
 		ResultSet result = executeStatement(statement.toString(), args);
-		List<PasswordRecoveryOut> resultList = new ArrayList<PasswordRecoveryOut>();
+		List<PasswordRecoveryDI> resultList = new ArrayList<PasswordRecoveryDI>();
 		for (Row row : result) {
 			resultList.add(getElement(row));
 		}
@@ -48,8 +48,8 @@ public class PasswordRecoveryAPI extends GenericAPI{
 		}						
 	}
 	
-	private static PasswordRecoveryOut getElement(Row row) {
-		PasswordRecoveryOut result = new PasswordRecoveryOut();				
+	private static PasswordRecoveryDI getElement(Row row) {
+		PasswordRecoveryDI result = new PasswordRecoveryDI();				
 		result.setUsername(row.getString(0));
 		result.setVerificationToken(row.getString(1));
 		result.setExpirationTimestamp(row.getTimestamp(2));

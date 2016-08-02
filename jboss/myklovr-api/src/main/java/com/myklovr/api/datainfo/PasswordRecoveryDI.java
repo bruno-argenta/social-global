@@ -1,8 +1,8 @@
-package com.myklovr.api.datainfo.user.out;
+package com.myklovr.api.datainfo;
 
 import java.util.Date;
 
-public class PasswordRecoveryOut {
+public class PasswordRecoveryDI {
 
 	private String username;
 	private String verificationToken;

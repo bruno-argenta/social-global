@@ -10,8 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
-import com.myklovr.api.datainfo.dictionaries.in.DictionaryIn;
-import com.myklovr.api.datainfo.dictionaries.out.DictionaryOut;
+import com.myklovr.api.datainfo.in.dictionary.DictionaryIn;
+import com.myklovr.api.datainfo.out.dictionary.DictionaryOut;
 import com.myklovr.helpers.constants.AppConstants;
 import com.myklovr.logger.Log;
 import com.myklovr.rest.beans.DictionaryBean;

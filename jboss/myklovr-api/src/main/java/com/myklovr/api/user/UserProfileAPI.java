@@ -2,14 +2,16 @@ package com.myklovr.api.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.myklovr.api.GenericAPI;
-import com.myklovr.api.datainfo.user.out.SectionOut;
-import com.myklovr.api.datainfo.user.out.UserProfileOut;;
+import com.myklovr.api.datainfo.in.user.UserProfileIn;
+import com.myklovr.api.datainfo.out.user.SectionOut;
+import com.myklovr.api.datainfo.out.user.UserProfileOut;;
 
 public class UserProfileAPI extends GenericAPI{
 
@@ -42,15 +44,21 @@ public class UserProfileAPI extends GenericAPI{
 		return user;	
 	}	
 	
-	public static void setUserProfileSection(UUID userId, String section, Map<String,String> values){
+	public static void setUserProfileSection(UserProfileIn user){
 		StringBuffer statement = new StringBuffer();
-		statement.append("UPDATE user_profile SET value=? WHERE userid = ? and section = ?");
+		StringBuffer sb = new StringBuffer("UPDATE user_profile SET value=? ");
 		List<Object> args = new ArrayList<Object>();
-		args.add(values);
-		args.add(userId);
-		args.add(section);
+		args.add(user.getSection().getValues());
+		if (!StringUtils.isEmpty(user.getUserKind())){
+			args.add(user.getUserKind());
+			sb.append(sb.append("user_kind=? "));			
+		}
+		sb.append("UPDATE user_profile SET value=? WHERE userid = ? and section = ?");		
+		statement.append(sb.toString());		
+		args.add(user.getUserId());
+		args.add(user.getSection().getSectionName());
 		ResultSet result = executeStatement(statement.toString(), args);
-		//TODO chack result
+		//TODO check result
 	}	
 	
 	private static UserProfileOut getElement(Row row,UserProfileOut user) {

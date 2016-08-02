@@ -9,10 +9,10 @@ import javax.ejb.Stateless;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.myklovr.api.datainfo.user.in.ChangePasswordRecoveryIn;
-import com.myklovr.api.datainfo.user.in.PasswordRecoveryIn;
-import com.myklovr.api.datainfo.user.in.VerifyCodeIn;
-import com.myklovr.api.datainfo.user.out.PasswordRecoveryOut;
+import com.myklovr.api.datainfo.PasswordRecoveryDI;
+import com.myklovr.api.datainfo.in.user.ChangePasswordRecoveryIn;
+import com.myklovr.api.datainfo.in.user.PasswordRecoveryIn;
+import com.myklovr.api.datainfo.in.user.VerifyCodeIn;
 import com.myklovr.api.user.LoginRegistrationAPI;
 import com.myklovr.api.user.PasswordRecoveryAPI;
 import com.myklovr.helpers.ComunicationHelper;
@@ -57,7 +57,7 @@ public class RecoveryPasswordBean {
 	
 	public Boolean verifyCode(VerifyCodeIn verifyCode) throws BussinesException{
 		String hashedCode = CryptoHelper.hashString(verifyCode.getCode());
-		PasswordRecoveryOut result = PasswordRecoveryAPI.getPasswordRecoveryByToken(hashedCode);		
+		PasswordRecoveryDI result = PasswordRecoveryAPI.getPasswordRecoveryByToken(hashedCode);		
 		if (result != null){
 			if (StringUtils.equalsIgnoreCase(verifyCode.getUsername(),result.getUsername())){
 				Date expirationTime = result.getExpirationTimestamp();

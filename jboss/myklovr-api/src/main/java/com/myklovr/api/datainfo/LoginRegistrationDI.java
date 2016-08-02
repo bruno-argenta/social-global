@@ -1,9 +1,9 @@
-package com.myklovr.api.datainfo.user.out;
+package com.myklovr.api.datainfo;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class LoginRegistrationOut {
+public class LoginRegistrationDI {
 
 	private UUID userId;
 	private String userName;
@@ -12,6 +12,10 @@ public class LoginRegistrationOut {
 	private int wrongPassCounter;
 	private Date userCrationTimestamp;
 	private Boolean accountBlocked;
+	private String name;
+	private String urlImageProfile;
+	private String nextPage;
+	private String kind;
 	
 	public UUID getUserId() {
 		return userId;
@@ -55,8 +59,28 @@ public class LoginRegistrationOut {
 	public void setAccountBlocked(Boolean accountBlocked) {
 		this.accountBlocked = accountBlocked;
 	}
-	
-	
-	
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getUrlImageProfile() {
+		return urlImageProfile;
+	}
+	public void setUrlImageProfile(String urlImageProfile) {
+		this.urlImageProfile = urlImageProfile;
+	}
+	public String getNextPage() {
+		return nextPage;
+	}
+	public void setNextPage(String nextPage) {
+		this.nextPage = nextPage;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}	
 }

@@ -1,13 +1,15 @@
-package com.myklovr.api.datainfo.user.out;
+package com.myklovr.api.datainfo;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class SessionOut {
+public class SessionDI {
 
 	private UUID userId;
 	private String sessionToken;
 	private Date expirationTimestamp;
+	private String username;
+	private String provider;
 	
 	public UUID getUserId() {
 		return userId;
@@ -27,9 +29,16 @@ public class SessionOut {
 	public void setExpirationTimestamp(Date expirationTimestamp) {
 		this.expirationTimestamp = expirationTimestamp;
 	}
-		
-	
-	
-	
-	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getProvider() {
+		return provider;
+	}
+	public void setProvider(String provider) {
+		this.provider = provider;
+	}
 }

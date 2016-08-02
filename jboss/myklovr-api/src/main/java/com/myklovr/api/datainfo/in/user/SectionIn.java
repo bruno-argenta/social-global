@@ -1,11 +1,15 @@
-package com.myklovr.api.datainfo.user.out;
+package com.myklovr.api.datainfo.in.user;
 
 import java.util.Map;
 
-public class SectionOut {
+import com.myklovr.api.datainfo.in.PrivateDataInfoIn;
+
+public class SectionIn extends PrivateDataInfoIn {
 
 	private String sectionName;
 	private Map<String,String> values;
+	
+	
 	public String getSectionName() {
 		return sectionName;
 	}

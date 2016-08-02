@@ -8,10 +8,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
-import com.myklovr.api.datainfo.user.in.ChangePasswordRecoveryIn;
-import com.myklovr.api.datainfo.user.in.LoginRegistrationIn;
-import com.myklovr.api.datainfo.user.in.PasswordRecoveryIn;
-import com.myklovr.api.datainfo.user.in.VerifyCodeIn;
+import com.myklovr.api.datainfo.in.user.ChangePasswordRecoveryIn;
+import com.myklovr.api.datainfo.in.user.LoginRegistrationIn;
+import com.myklovr.api.datainfo.in.user.PasswordRecoveryIn;
+import com.myklovr.api.datainfo.in.user.VerifyCodeIn;
+import com.myklovr.api.datainfo.out.user.LoginOut;
 import com.myklovr.helpers.constants.AppConstants;
 import com.myklovr.logger.Log;
 import com.myklovr.rest.beans.LoginRegistrationBean;
@@ -36,8 +37,8 @@ public class UserRest {
 		GenericDTO result;
 		Gson gson = new Gson();
 		try {
-			String sessionToken = loginRegistrationBean.registerUserMyKlovr(loginRegistration);
-			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
+			LoginOut user = loginRegistrationBean.registerUserMyKlovr(loginRegistration);
+			result = new GenericDTO("", AppConstants.OK_CODE, user);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
 			e.printStackTrace();
@@ -55,8 +56,8 @@ public class UserRest {
 		GenericDTO result;
 		Gson gson = new Gson();
 		try {
-			String sessionToken = loginRegistrationBean.loginUser(loginRegistration);
-			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
+			LoginOut user = loginRegistrationBean.loginUser(loginRegistration);
+			result = new GenericDTO("", AppConstants.OK_CODE, user);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
 			Log.error(e.getMessage(), e);
@@ -73,8 +74,8 @@ public class UserRest {
 		GenericDTO result;
 		Gson gson = new Gson();
 		try {
-			String sessionToken = loginRegistrationBean.loginExternalProvider(loginRegistration);
-			result = new GenericDTO("", AppConstants.OK_CODE, sessionToken);
+			LoginOut user = loginRegistrationBean.loginExternalProvider(loginRegistration);
+			result = new GenericDTO("", AppConstants.OK_CODE, user);
 		} catch (Exception e) {
 			result = new GenericDTO(e.getMessage(), AppConstants.ERROR_INTERNAL, "");
 			e.printStackTrace();

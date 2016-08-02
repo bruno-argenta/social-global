@@ -6,8 +6,8 @@
   <packaging>pom</packaging>
   <name>My Klovr Social Network</name>
   <modules>
-  	<module>myklovr-api</module>
   	<module>myklovr-helpers</module>
+  	<module>myklovr-api</module>  	
   	<module>myklovr-rest-api</module>
   </modules>
   <build>

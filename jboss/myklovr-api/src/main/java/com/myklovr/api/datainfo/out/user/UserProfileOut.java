@@ -1,4 +1,4 @@
-package com.myklovr.api.datainfo.user.out;
+package com.myklovr.api.datainfo.out.user;
 
 import java.util.ArrayList;
 import java.util.List;
