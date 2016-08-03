@@ -21,7 +21,7 @@ public class SessionAPI extends GenericAPI{
 	
 	public static List<SessionDI> getValidSessionByToken(String sessionToken){
 		StringBuffer statement = new StringBuffer();
-		statement.append("SELECT userid,sessiontoken,expirationtimestamp,username,provider FROM session WHERE sessiontoken= ? ");
+		statement.append("SELECT userid,sessiontoken,expirationtimestamp,username,provider,kind FROM session WHERE sessiontoken= ? ");
 		List<Object> args = new ArrayList<Object>();
 		args.add(sessionToken);
 		ResultSet result = executeStatement(statement.toString(), args);
@@ -54,9 +54,27 @@ public class SessionAPI extends GenericAPI{
 		}	
 	}
 	
+	public static void updateKind(String sessionToken, String kind) throws BussinesException{		
+		StringBuffer statement = new  StringBuffer();
+		statement.append("UPDATE session set kind = ? WHERE sessiontoken = ?");		
+		statement.append(" IF EXISTS");
+		List<Object> args = new ArrayList<Object>();		
+		args.add(kind);
+		args.add(sessionToken);
+		ResultSet result = executeStatement(statement.toString(), args);
+		List<Row> rows = result.all();
+		if (!rows.isEmpty()){
+			Row row  = rows.get(0);
+			Boolean updated = row.get(0,Boolean.class);
+			if (!updated){
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_SESSION_EXPIRED));
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_MESSAGE_SESSION_EXPIRED));
+			}
+		}	
+	}
 	
 	
-	public static void insertSession(String sessionToken, UUID userId, String username, String provider) throws BussinesException{	
+	public static void insertSession(String sessionToken, UUID userId, String username, String provider, String kind) throws BussinesException{	
 		StringBuffer statement = new  StringBuffer();
 		statement.append("INSERT INTO session (sessiontoken,userid,expirationtimestamp,username,provider) ");		
 		statement.append("VALUES (?,?,toTimestamp(now()),?,?) IF NOT EXISTS");
@@ -90,6 +108,7 @@ public class SessionAPI extends GenericAPI{
 			result.setExpirationTimestamp(session);
 			result.setUsername(row.getString(3));
 			result.setProvider(row.getString(4));
+			result.setKind(row.getString(5));
 		}		
 		return result;		
 	}

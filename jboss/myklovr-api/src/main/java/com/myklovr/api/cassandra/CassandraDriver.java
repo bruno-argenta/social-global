@@ -1,6 +1,7 @@
 package com.myklovr.api.cassandra;
 
 import java.util.List;
+import java.util.Map;
 
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
@@ -23,10 +24,15 @@ public class CassandraDriver {
 	public static ResultSet executeStatement(String stringStatement, List<Object> args){
 		PreparedStatement statement = session.prepare(stringStatement);
 		BoundStatement boundStatement = new BoundStatement(statement);
-		boundStatement.bind();
+		boundStatement.bind();	
 		Integer i =0;
 		for(Object obj : args){
-			boundStatement.set(i, obj, (Class)obj.getClass());
+			if (obj instanceof Map){
+				boundStatement.setMap(i,(Map)obj);
+			}else{
+				boundStatement.set(i, obj, (Class)obj.getClass());
+			}
+			
 			i++;
 		}				
 		return session.execute(boundStatement);

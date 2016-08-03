@@ -10,6 +10,7 @@ public class SessionDI {
 	private Date expirationTimestamp;
 	private String username;
 	private String provider;
+	private String kind;
 	
 	public UUID getUserId() {
 		return userId;
@@ -40,5 +41,11 @@ public class SessionDI {
 	}
 	public void setProvider(String provider) {
 		this.provider = provider;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 }

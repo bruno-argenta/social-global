@@ -102,6 +102,28 @@ public class LoginRegistrationAPI extends GenericAPI{
 		
 	}
 	
+	public static void updateNextPageUser(String userName, String provider, String nextPage, String kind) throws Exception{
+		
+		StringBuffer statement = new  StringBuffer();
+		statement.append("UPDATE login SET nextpage = ? ,kind=? ");		
+		statement.append("WHERE username= ? and provider = ? IF EXISTS");
+		List<Object> args = new ArrayList<Object>();
+		args.add(nextPage);
+		args.add(kind);
+		args.add(userName);
+		args.add(provider);	
+		ResultSet result = executeStatement(statement.toString(), args);
+		List<Row> rows = result.all();
+		if (!rows.isEmpty()){
+			Row row  = rows.get(0);
+			Boolean inserted = row.get(0,Boolean.class);
+			if (!inserted){
+				Log.warn(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_UPDATE_NEXT_PAGE));
+				throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_LOGIN_UPDATE_NEXT_PAGE));
+			}
+		}		
+		
+	}
 	
 	private static LoginRegistrationDI getElement(Row row) {
 		LoginRegistrationDI result = new LoginRegistrationDI();				

@@ -45,7 +45,7 @@ public class LoginRegistrationBean {
 			if (StringUtils.equalsIgnoreCase(hashedPassword, loginUser.getPassword())
 					&& !loginUser.getAccountBlocked()) {
 				LoginRegistrationAPI.updatePasswordCounterUser(loginUser.getUserName(), loginUser.getProvider(), false,0);
-				String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider());
+				String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider(),loginUser.getKind());
 				LoginOut user = new LoginOut(loginUser);
 				user.setSessionToken(sessionToken);
 				return user;
@@ -96,10 +96,10 @@ public class LoginRegistrationBean {
 		return result;
 	}
 
-	private String createSessionUser(UUID userId,String username,String provider) throws BussinesException {
+	private String createSessionUser(UUID userId,String username,String provider,String userKind) throws BussinesException {
 		String sessionToken = UUID.randomUUID().toString();
 		String hashedSession = CryptoHelper.hashString(sessionToken);
-		SessionAPI.insertSession(hashedSession, userId,username,provider);
+		SessionAPI.insertSession(hashedSession, userId,username,provider,userKind);
 		return sessionToken;
 	}
 
@@ -109,7 +109,7 @@ public class LoginRegistrationBean {
 		LoginRegistrationAPI.registerUser(registrationInfo);
 		LoginRegistrationDI userLogin = LoginRegistrationAPI.getUserByUserNameProvider(registrationInfo.getUsername(),
 				registrationInfo.getProvider());		
-		String sessionToken = createSessionUser(userLogin.getUserId(),userLogin.getUserName(),userLogin.getProvider());
+		String sessionToken = createSessionUser(userLogin.getUserId(),userLogin.getUserName(),userLogin.getProvider(),userLogin.getKind());
 		LoginOut user = new LoginOut(userLogin);
 		user.setSessionToken(sessionToken);
 		return user;
@@ -121,7 +121,7 @@ public class LoginRegistrationBean {
 		LoginRegistrationDI loginUser = LoginRegistrationAPI.getUserByUserNameProvider(profile.getId(),
 				registrationInfo.getProvider());
 		if (loginUser != null){
-			String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider());
+			String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider(),loginUser.getKind());
 			LoginOut user = new LoginOut(loginUser);
 			user.setSessionToken(sessionToken);
 			return user;
@@ -136,7 +136,7 @@ public class LoginRegistrationBean {
 		LoginRegistrationDI loginUser = LoginRegistrationAPI.getUserByUserNameProvider(profile.getId(),
 				registrationInfo.getProvider());
 		if (loginUser != null){
-			String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider());
+			String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider(),loginUser.getKind());
 			LoginOut user = new LoginOut(loginUser);
 			user.setSessionToken(sessionToken);
 			return user;
@@ -151,7 +151,7 @@ public class LoginRegistrationBean {
 		LoginRegistrationDI loginUser = LoginRegistrationAPI.getUserByUserNameProvider(profile.getId(),
 				registrationInfo.getProvider());
 		if (loginUser != null){
-			String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider());
+			String sessionToken = createSessionUser(loginUser.getUserId(),loginUser.getUserName(),loginUser.getProvider(),loginUser.getKind());
 			LoginOut user = new LoginOut(loginUser);
 			user.setSessionToken(sessionToken);
 			return user;

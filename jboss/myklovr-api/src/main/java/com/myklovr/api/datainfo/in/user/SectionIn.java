@@ -1,13 +1,14 @@
 package com.myklovr.api.datainfo.in.user;
 
-import java.util.Map;
+import java.util.HashMap;
 
 import com.myklovr.api.datainfo.in.PrivateDataInfoIn;
 
 public class SectionIn extends PrivateDataInfoIn {
 
 	private String sectionName;
-	private Map<String,String> values;
+	private HashMap<String,String> values;
+	private String nextPage;
 	
 	
 	public String getSectionName() {
@@ -16,11 +17,17 @@ public class SectionIn extends PrivateDataInfoIn {
 	public void setSectionName(String sectionName) {
 		this.sectionName = sectionName;
 	}
-	public Map<String, String> getValues() {
+	public HashMap<String, String> getValues() {
 		return values;
 	}
-	public void setValues(Map<String, String> values) {
+	public void setValues(HashMap<String, String> values) {
 		this.values = values;
+	}
+	public String getNextPage() {
+		return nextPage;
+	}
+	public void setNextPage(String nextPage) {
+		this.nextPage = nextPage;
 	}	
 	
 	

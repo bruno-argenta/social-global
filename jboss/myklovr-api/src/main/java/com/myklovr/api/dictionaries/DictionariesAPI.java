@@ -25,22 +25,23 @@ public class DictionariesAPI extends GenericAPI {
 		StringBuffer statement = new StringBuffer();
 		StringBuffer sb = new StringBuffer();
 		List<Object> args = new ArrayList<Object>();
-		sb.append("SELECT id,value FROM ");
+		args.add(dictionary.getLenguage());
+		sb.append("SELECT code,value FROM ");
 		switch (dictionary.getDictionary()) {
 		case COUNTRY:
-			sb.append("country;");
+			sb.append("country where lenguage=?;");
 			break;
 		case INDUSTRY_TYPE:
-			sb.append("industry_type;");
+			sb.append("industry_type where lenguage=?;");
 			break;
 		case SUBJECTS:
-			sb.append("subjects;");
+			sb.append("subjects where lenguage=?;");
 			break;
 		case SCHOOL_TYPE:
-			sb.append("school_type;");
+			sb.append("school_type where lenguage=?;");
 			break;
 		case STATE:
-			sb.append("state where country_code =?;");
+			sb.append("state where lenguage=? and country_code =?;");
 			args.add(dictionary.getFilter());
 			break;
 			default: throw new BussinesException(PropertiesHelper.getStringMessageProperty(MessagesConstants.ERROR_DICTIONARY_NOT_FOUND));

@@ -3,7 +3,8 @@ var service = require('../../services/requestRest.js');
 var uuid = require('node-uuid');
 
 
-var connectionsPool = [];
+var conectionsPool = [];
+
 
 var model = {
     OperationStatus:'',
@@ -133,124 +134,167 @@ var sectionPromotingSelected;
 var sectionResearchDevelopmentSelected;
 var sectionCareerServicesSelected;
 
-exports.resetWizard = function(req,res){
-    kindSelected = undefined;
-    sectionKindSelected= undefined;
-    sectionBasicInfoSelected= undefined;
-    sectionAccademicGrowthSelected= undefined;
-    sectionProfessionalGrowthSelected= undefined;
-    sectionPersonalGrowthSelected= undefined;
-    sectionRecruitingGrowthSelected= undefined;
-    sectionMarketResearchSelected= undefined;
-    sectionPromotingSelected= undefined;
-    sectionResearchDevelopmentSelected= undefined;
-    sectionCareerServicesSelected= undefined;
-    res.send("Reset Success");
+var invalidArgumentResponse = {
+    OperationStatus:3,
+    Message: {
+        Text:"Invalid arguments",
+        Level:'ERROR',
+    },
+    OperationData: ''
 }
 
-exports.getSectionUserKind = function(req, res) {
-    console.log('GET getSectionUserKind');
-    if (sectionKindSelected === undefined){
-        sectionKindSelected = initSectionKindData;
-    }
 
-    if (kindSelected == undefined){
-        kindSelected = null;
+exports.getUserSectionKind = function(req, res) {
+    console.log('GET getSectionUserKind');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var sessionToken = req.cookies.sessionToken;
+    if (sessionToken === undefined){
+        req.status(200).jsonp(invalidArgumentResponse);
+    }else{
+        var connUUID = uuid.v1();
+        conectionsPool[connUUID] = {request: req,response:res};
+        var section = req.body.SectionKind;
+        section.kind = req.body.Kind;
+        var requestModel = {
+            sectionName:'SectionKind',
+            values: '',
+            sessionToken:sessionToken,
+            nextPage:''
+        }
+        console.log(JSON.stringify(requestModel));
+        service.requestPost(requestModel,CONSTANTS.SERVICES.USER_PROFILE.GET_SECTION,response,connUUID);
     }
-    model.OperationStatus = 0;
-    model.Message = null;
-    model.OperationData = {
-        Kind: kindSelected,
-        SectionKind: sectionKindSelected
-    }
-    res.status(200).jsonp(model);
 };
 
-exports.setSectionUserKind = function(req, res) {
-    console.log('SET setSectionUserKind');
-    kindSelected = req.body.Kind;
-    sectionKindSelected = req.body.SectionKind;
-    model.OperationStatus = 0;
-    model.Message = null;
-    model.OperationData = {}
-    res.status(200).jsonp(model);
+exports.setUserSectionKind = function(req, res) {
+    console.log('SET getSectionUserKind');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var sessionToken = req.cookies.sessionToken;
+    if ((req.body.SectionKind === undefined)||(req.body.Kind === undefined) || (sessionToken === undefined)){
+        req.status(200).jsonp(invalidArgumentResponse);
+    }else{
+        var connUUID = uuid.v1();
+        conectionsPool[connUUID] = {request: req,response:res};
+        var section = req.body.SectionKind;
+        section.kind = req.body.Kind;
+        var requestModel = {
+            sectionName:'SectionKind',
+            values: section,
+            sessionToken:sessionToken,
+            nextPage:'WIZARD_2'
+        }
+        console.log(JSON.stringify(requestModel));
+        service.requestPost(requestModel,CONSTANTS.SERVICES.USER_PROFILE.SET_SECTION,response,connUUID);
+    }
 };
 
 exports.getUserSectionBasicInfo = function(req, res) {
-    console.log('GET getSectionUserKind');
-    if (sectionBasicInfoSelected === undefined){
-        sectionBasicInfoSelected = initSectionBasicInfo;
+    console.log('SET setUserSectionBasicInfo');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var sessionToken = req.cookies.sessionToken;
+    if (sessionToken === undefined){
+        req.status(200).jsonp(invalidArgumentResponse);
+    }else{
+        var connUUID = uuid.v1();
+        conectionsPool[connUUID] = {request: req,response:res};
+        var requestModel = {
+            sectionName:'SectionBasicInfo',
+            values: '',
+            sessionToken:sessionToken,
+            nextPage:''
+        }
+        console.log(JSON.stringify(requestModel));
+        service.requestPost(requestModel,CONSTANTS.SERVICES.USER_PROFILE.GET_SECTION,response,connUUID);
     }
-    model.OperationStatus = 0;
-    model.Message = null;
-    model.OperationData = {
-        SectionData: sectionBasicInfoSelected
-    }
-    res.status(200).jsonp(model);
 };
 
 exports.setUserSectionBasicInfo = function(req, res) {
-    console.log('SET setSectionUserKind');
-    sectionBasicInfoSelected = req.body.SectionData;
-    model.OperationStatus = 0;
-    model.Message = null;
-    model.OperationData = {}
-    res.status(200).jsonp(model);
+    console.log('SET setUserSectionBasicInfo');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var sessionToken = req.cookies.sessionToken;
+    if ((req.body.SectionBasicInfo === undefined)||(req.body.Kind === undefined) || (sessionToken === undefined)){
+        req.status(200).jsonp(invalidArgumentResponse);
+    }else{
+        var connUUID = uuid.v1();
+        conectionsPool[connUUID] = {request: req,response:res};
+        var section = req.body.SectionBasicInfo;
+        var requestModel = {
+            sectionName:'SectionBasicInfo',
+            values: section,
+            sessionToken:sessionToken,
+            nextPage:'WIZARD_3'
+        }
+        console.log(JSON.stringify(requestModel));
+        service.requestPost(requestModel,CONSTANTS.SERVICES.USER_PROFILE.SET_SECTION,response,connUUID);
+    }
 };
 
 exports.getUserSectionPurpose = function(req, res) {
-    console.log('GET getUserSectionPurpose');
-    if ((sectionAccademicGrowthSelected === undefined)&&((kindSelected === 'STUDENT')||(kindSelected === 'PARENT'))) {
-        sectionAccademicGrowthSelected = initSectionAccademicGrowth;
+    console.log('SET setUserSectionBasicInfo');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var sessionToken = req.cookies.sessionToken;
+    if (sessionToken === undefined){
+        req.status(200).jsonp(invalidArgumentResponse);
+    }else{
+        var connUUID = uuid.v1();
+        conectionsPool[connUUID] = {request: req,response:res};
+        var section = req.body.SectionBasicInfo;
+        var requestModel = {
+            sectionName:'SectionBasicInfo',
+            values: '',
+            sessionToken:sessionToken,
+            nextPage:''
+        }
+        console.log(JSON.stringify(requestModel));
+        service.requestPost(requestModel,CONSTANTS.SERVICES.USER_PROFILE.GET_SECTION,response,connUUID);
     }
-    if ((sectionProfessionalGrowthSelected === undefined)&&((kindSelected === 'STUDENT')||(kindSelected === 'PARENT'))){
-        sectionProfessionalGrowthSelected = initSectionProfessionalGrowth;
-    }
-    if ((sectionPersonalGrowthSelected === undefined)&&((kindSelected === 'STUDENT')||(kindSelected === 'PARENT'))){
-        sectionPersonalGrowthSelected = initSectionPersonalGrowth;
-    }
-    if ((sectionRecruitingGrowthSelected === undefined)&&((kindSelected === 'COMPANY')||(kindSelected === 'SCHOOL_UNIVERSITY'))){
-        sectionRecruitingGrowthSelected = initSectionRecruitingGrowth;
-    }
-    if ((sectionMarketResearchSelected == undefined)&&(kindSelected === 'COMPANY')){
-        sectionMarketResearchSelected = initSectionMarketResearch;
-    }
-    if ((sectionPromotingSelected === undefined)&&(kindSelected === 'COMPANY')){
-        sectionPromotingSelected = initSectionPromoting;
-    }
-    if ((sectionResearchDevelopmentSelected === undefined)&&(kindSelected === 'SCHOOL_UNIVERSITY')){
-        sectionResearchDevelopmentSelected = initSectionResearchDevelopment;
-    }
-    if ((sectionCareerServicesSelected === undefined)&&(kindSelected === 'SCHOOL_UNIVERSITY')){
-        sectionCareerServicesSelected = initSectionCareerServices;
-    }
-    model.OperationStatus = 0;
-    model.Message = null;
-    model.OperationData = {
-        SectionAccademicGrowth: sectionAccademicGrowthSelected,
-        SectionProfessionalGrowth:sectionProfessionalGrowthSelected,
-        SectionPersonalGrowth:sectionPersonalGrowthSelected,
-        SectionRecruitingGrowth:sectionRecruitingGrowthSelected,
-        SectionMarketResearch:sectionMarketResearchSelected,
-        SectionPromoting:sectionPromotingSelected,
-        SectionResearchDevelopment:sectionResearchDevelopmentSelected,
-        SectionCareerServices:sectionCareerServicesSelected
-    }
-    res.status(200).jsonp(model);
 };
 
 exports.setUserSectionPurpose = function(req, res) {
-    console.log('SET setUserSectionPurpose');
-    sectionAccademicGrowthSelected = req.body.sectionAccademicGrowthSelected;
-    sectionProfessionalGrowthSelected = req.body.sectionProfessionalGrowthSelected;
-    sectionPersonalGrowthSelected = req.body.sectionPersonalGrowthSelected;
-    sectionRecruitingGrowthSelected = req.body.sectionRecruitingGrowthSelected;
-    sectionMarketResearchSelected = req.body.sectionMarketResearchSelected;
-    sectionPromotingSelected = req.body.sectionPromotingSelected;
-    sectionResearchDevelopmentSelected = req.body.sectionResearchDevelopmentSelected;
-    sectionCareerServicesSelected = req.body.sectionCareerServicesSelected;
-    model.OperationStatus = 0;
-    model.Message = null;
-    model.OperationData = {}
-    res.status(200).jsonp(model);
+
+    console.log('SET setUserSectionBasicInfo');
+    console.log("Parameteres: " + JSON.stringify(req.body));
+    var sessionToken = req.cookies.sessionToken;
+    if (((req.body.SectionAccademicGrowth === undefined)    &&
+         (req.body.SectionProfessionalGrowth === undefined) &&
+         (req.body.SectionPersonalGrowth === undefined)     &&
+         (req.body.SectionRecruitingGrowth === undefined)   &&
+         (req.body.SectionMarketResearch === undefined)     &&
+         (req.body.SectionPromoting === undefined)          &&
+         (req.body.SectionResearchDevelopment === undefined)&&
+         (req.body.SectionCareerServices === undefined))    || (sessionToken === undefined)){
+        req.status(200).jsonp(invalidArgumentResponse);
+    }else{
+        var connUUID = uuid.v1();
+        conectionsPool[connUUID] = {request: req,response:res, callCounter:0};
+        if (req.body.SectionAccademicGrowth != undefined){
+            conectionsPool[connUUID].callCounter = conectionsPool[connUUID].callCounter+1;
+            var section = req.body.SectionBasicInfo;
+            var requestModel = {
+                sectionName:'SectionAccademicGrowth',
+                values: section,
+                sessionToken:sessionToken,
+                nextPage:'HOME'
+            }
+            service.requestPost(requestModel,CONSTANTS.SERVICES.USER_PROFILE.SET_SECTION,verifySectionPurposeEnd,connUUID);
+        }
+    }
 };
+
+function verifySectionPurposeEnd(statusCode,model, connUUID){
+    if (conectionsPool[connUUID].callCounter > 0 ){
+
+    }else{
+        if (statusCode != 200){
+
+        }
+    }
+}
+
+
+function response(statusCode,model, connUUID){
+    var connection = conectionsPool[connUUID];
+    delete conectionsPool[connUUID];
+    var res = connection.response;
+    res.status(statusCode).jsonp(model);
+}

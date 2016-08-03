@@ -19,5 +19,9 @@ exports.SERVICES = Object.freeze({
         VALIDATE_CODE:  apppath + "/user/verifyCode",
         RECOVERY_PASSWORD: apppath + "/user/recoveryPassword",
         CHANGE_PASSWORD: apppath + "/user/changePasswordRecovery",
+    },
+    USER_PROFILE:{
+        SET_SECTION: apppath + "userProfile/setSection",
+        GET_SECTION: apppath + "userProfile/getSection",
     }
 });

@@ -9,6 +9,7 @@ public class MessagesConstants {
 	public static final String ERROR_LOGIN_ACCOUNT_BLOCKED = "error.login.account.blocked";
 	public static final String ERROR_LOGIN_WRONG_PASSWORD = "error.login.wrong.password";
 	public static final String ERROR_PASSWORD_RECOVERY_UPDATE_PASSWORD = "error.password.recovery.updatePassword";
+	public static final String ERROR_LOGIN_UPDATE_NEXT_PAGE = "error.login.update.NextPage";
 	public static final String ERROR_LOGIN_UPDATE_PASSWORDCOUNTER = "error.login.update.passwordCounter";
 	public static final String ERROR_PASSWORD_RECOVERY_CREATE_VERIFICATION_CODE = "error.password.recovery.createVerificationCode";
 	public static final String ERROR_PASSWORD_RECOVERY_INVALID_METHOD = "error.password.recovery.invalidMethod";

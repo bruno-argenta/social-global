@@ -33,34 +33,39 @@ CREATE TABLE myklovr.passwordrecovery (
 
 
 CREATE TABLE myklovr.country (
+	lenguage text,
 	code text,
 	name text,
-	PRIMARY KEY (code)
+	PRIMARY KEY (lenguage)
 );
 
 CREATE TABLE myklovr.state (
+	lenguage text,
 	country_code text,
 	code text,
 	name text,
-	PRIMARY KEY (country_code, code)
+	PRIMARY KEY (lenguage,country_code)
 );
 
 CREATE TABLE myklovr.industry_type (
+	lenguage text,
 	code uuid,
 	name text,
-	PRIMARY KEY (code)
+	PRIMARY KEY (lenguage)
 );
 
 CREATE TABLE myklovr.subjects (
+	lenguage text,
 	code uuid,
 	name text,
-	PRIMARY KEY (code)
+	PRIMARY KEY (lenguage)
 );
 
 CREATE TABLE myklovr.school_type (
+	lenguage text,
 	code uuid,
 	name text,
-	PRIMARY KEY (code)
+	PRIMARY KEY (lenguage)
 );
 
 
@@ -69,7 +74,7 @@ CREATE TABLE myklovr.user_profile (
 	user_kind text,
 	section text,
 	value MAP<text, text>,
-	PRIMARY KEY (userid, user_kind, section)
+	PRIMARY KEY (userid, section)
 )
 
 
@@ -90,4 +95,7 @@ add username text;
 
 ALTER TABLE myklovr.session
 add provider text;
+
+ALTER TABLE myklovr.session
+add kind text;
 
