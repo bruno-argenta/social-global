@@ -3,7 +3,7 @@ package com.myklovr.api.datainfo.in.dictionary;
 public class DictionaryIn {
 
 	private String dictionary;
-	private String lenguage;
+	private String language;
 	private String filter;
 
 	public String getDictionary() {
@@ -22,12 +22,12 @@ public class DictionaryIn {
 		this.filter = filter;
 	}
 
-	public String getLenguage() {
-		return lenguage;
+	public String getLanguage() {
+		return language;
 	}
 
-	public void setLenguage(String lenguage) {
-		this.lenguage = lenguage;
+	public void setLanguage(String language) {
+		this.language = language;
 	} 
 	
 	

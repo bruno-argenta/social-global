@@ -115,7 +115,7 @@ function response(statusCode,model, connUUID){
     delete conectionsPool[connUUID];
     var res = connection.response;
     if ((connection.createCookie) && (statusCode == 200)){
-        res.cookie('sessionToken',model.OperationData, { maxAge: 900000, httpOnly: true });
+        res.cookie('sessionToken',model.OperationData.sessionToken, { maxAge: 900000, httpOnly: true });
         console.log('Save cookie: '+model.OperationData);
     }
     res.status(statusCode).jsonp(model);

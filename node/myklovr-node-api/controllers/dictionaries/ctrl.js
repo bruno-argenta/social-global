@@ -3,8 +3,16 @@ var service = require('../../services/requestRest.js');
 var uuid = require('node-uuid');
 
 
-var conectionsPool = [];
-var resourcesText = [];
+var connectionsPool = [];
+
+var invalidArgumentResponse = {
+    OperationStatus:3,
+    Message: {
+        Text:"Invalid arguments",
+        Level:'ERROR',
+    },
+    OperationData: ''
+}
 
 var countries =[
     {id:'US',value:'United States'},
@@ -47,60 +55,48 @@ var schoolType =[
 ]
 
 
-exports.getCountries = function(req, res) {
+var connectionsPool = [];
 
-    var responseModel = {
-            OperationStatus: 0,
-            Message :null,
-            OperationData: {
-                Countries: countries
-            }
-        }
-    res.status(200).jsonp(responseModel);
+exports.getCountries = function(req, res) {
+    getDictionary(req.body.Language,'COUNTRY',req,res,'');
 };
 
 exports.getStates = function(req, res) {
-
-    var responseModel = {
-        OperationStatus: 0,
-        Message :null,
-        OperationData: {
-            States: states
-        }
+    if (req.body.Country != undefined){
+        getDictionary(req.body.Language,'STATE',req,res,req.body.Country);
+    }else{
+        req.status(200).jsonp(invalidArgumentResponse);
     }
-    res.status(200).jsonp(responseModel);
 };
 exports.getIndustries = function(req, res) {
-
-    var responseModel = {
-        OperationStatus: 0,
-        Message :null,
-        OperationData: {
-            Industries: industries
-        }
-    }
-    res.status(200).jsonp(responseModel);
+    getDictionary(req.body.Language,'INDUSTRY_TYPE',req,res,'');
 };
 exports.getSchoolTypes = function(req, res) {
-
-    var responseModel = {
-        OperationStatus: 0,
-        Message :null,
-        OperationData: {
-            SchoolTypes: schoolType
-        }
-    }
-    res.status(200).jsonp(responseModel);
+    getDictionary(req.body.Language,'SCHOOL_TYPE',req,res,'');
 };
 
 exports.getSubjects = function(req, res) {
-
-    var responseModel = {
-        OperationStatus: 0,
-        Message :null,
-        OperationData: {
-            Subjects: subjects
-        }
-    }
-    res.status(200).jsonp(responseModel);
+    getDictionary(req.body.Language,'SUBJECTS',req,res,'');
 };
+
+function getDictionary(language,dictionary,req,res,filter){
+    if (language != undefined){
+        var connUUID = uuid.v1();
+        connectionsPool[connUUID] = {request: req,response:res};
+        var requestModel = {
+            dictionary:dictionary,
+            language: language,
+            filter:filter
+        }
+        service.requestPost(requestModel,CONSTANTS.SERVICES.DICTIONARY.GET_DICTIONARY,response,connUUID);
+    }else{
+        res.status(200).jsonp(invalidArgumentResponse);
+    }
+}
+
+function response(statusCode,model, connUUID){
+    var connection = connectionsPool[connUUID];
+    delete connectionsPool[connUUID];
+    var res = connection.response;
+    res.status(statusCode).jsonp(model);
+}

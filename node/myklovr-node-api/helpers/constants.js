@@ -21,7 +21,10 @@ exports.SERVICES = Object.freeze({
         CHANGE_PASSWORD: apppath + "/user/changePasswordRecovery",
     },
     USER_PROFILE:{
-        SET_SECTION: apppath + "userProfile/setSection",
-        GET_SECTION: apppath + "userProfile/getSection",
+        SET_SECTION: apppath + "/userProfile/setSection",
+        GET_SECTION: apppath + "/userProfile/getSection",
+    },
+    DICTIONARY:{
+        GET_DICTIONARY: apppath + '/dictionary/getDictionary',
     }
 });

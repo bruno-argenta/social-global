@@ -66,11 +66,10 @@ public class UserProfileAPI extends GenericAPI {
 		UserProfileOut user = new UserProfileOut();
 		user.setUserId(row.getUUID(0));
 		user.setUserKind(row.getString(1));
-
 		SectionOut section = new SectionOut();
 		section.setSectionName(row.getString(2));
 		section.setValues(row.getMap(3, String.class, String.class));
-		user.getSections().add(section);
+		user.setSection(section);
 		return user;
 	}
 

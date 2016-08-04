@@ -84,38 +84,31 @@ router.route('/user/changePasswordRecovery')
 /*** USER PROFILE***/
 
 router.route('/userProfile/getSectionUserKind')
-    .get(userProfileCtrl.getSectionUserKind)
+    .post(userProfileCtrl.getUserSectionKind);
 router.route('/userProfile/getUserSectionBasicInfo')
-    .get(userProfileCtrl.getUserSectionBasicInfo)
+    .post(userProfileCtrl.getUserSectionBasicInfo);
 router.route('/userProfile/getUserSectionPurpose')
-    .get(userProfileCtrl.getUserSectionPurpose)
-router.route('/userProfile/setSectionUserKind')
-    .post(userProfileCtrl.setSectionUserKind)
+    .post(userProfileCtrl.getUserSectionPurpose);
+router.route('/userProfile/setUserSectionKind')
+    .post(userProfileCtrl.setUserSectionKind);
 router.route('/userProfile/setUserSectionBasicInfo')
-    .post(userProfileCtrl.setUserSectionBasicInfo)
+    .post(userProfileCtrl.setUserSectionBasicInfo);
 router.route('/userProfile/setUserSectionPurpose')
-    .post(userProfileCtrl.setUserSectionPurpose)
+    .post(userProfileCtrl.setUserSectionPurpose);
 
 
 /*** DICTIONARIES **/
 
 router.route('/dictionaries/getCountries')
-    .get(dictionariesCtrl.getCountries)
+    .post(dictionariesCtrl.getCountries);
 router.route('/dictionaries/getStates')
-    .get(dictionariesCtrl.getStates)
+    .post(dictionariesCtrl.getStates);
 router.route('/dictionaries/getSchoolTypes')
-    .get(dictionariesCtrl.getSchoolTypes)
+    .post(dictionariesCtrl.getSchoolTypes);
 router.route('/dictionaries/getSubjects')
-    .get(dictionariesCtrl.getSubjects)
+    .post(dictionariesCtrl.getSubjects);
 router.route('/dictionaries/getIndustries')
-    .get(dictionariesCtrl.getIndustries)
-
-
-
-/*** UTILS ***/
-
-router.route('/userProfile/resetWizard')
-    .get(userProfileCtrl.resetWizard);
+    .post(dictionariesCtrl.getIndustries);
 
 app.use('/api/',router);
 

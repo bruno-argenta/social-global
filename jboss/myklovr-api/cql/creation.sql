@@ -33,39 +33,39 @@ CREATE TABLE myklovr.passwordrecovery (
 
 
 CREATE TABLE myklovr.country (
-	lenguage text,
+	language text,
 	code text,
 	name text,
-	PRIMARY KEY (lenguage)
+	PRIMARY KEY (language,code)
 );
 
 CREATE TABLE myklovr.state (
-	lenguage text,
+	language text,
 	country_code text,
 	code text,
 	name text,
-	PRIMARY KEY (lenguage,country_code)
+	PRIMARY KEY ((language,country_code),code)
 );
 
 CREATE TABLE myklovr.industry_type (
-	lenguage text,
-	code uuid,
+	language text,
+	code text,
 	name text,
-	PRIMARY KEY (lenguage)
+	PRIMARY KEY (language,code)
 );
 
 CREATE TABLE myklovr.subjects (
-	lenguage text,
-	code uuid,
+	language text,
+	code text,
 	name text,
-	PRIMARY KEY (lenguage)
+	PRIMARY KEY (language,code)
 );
 
 CREATE TABLE myklovr.school_type (
-	lenguage text,
-	code uuid,
+	language text,
+	code text,
 	name text,
-	PRIMARY KEY (lenguage)
+	PRIMARY KEY (language,code)
 );
 
 

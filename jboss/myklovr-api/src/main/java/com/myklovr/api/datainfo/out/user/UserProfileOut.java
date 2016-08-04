@@ -1,19 +1,13 @@
 package com.myklovr.api.datainfo.out.user;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class UserProfileOut {
 
 	private UUID userId;
 	private String userKind;
-	private List<SectionOut> sections;
-	
-	public UserProfileOut(){
-		sections = new ArrayList<SectionOut>(); 
-	}
-	
+	private SectionOut section;
+
 	public UUID getUserId() {
 		return userId;
 	}
@@ -26,11 +20,11 @@ public class UserProfileOut {
 	public void setUserKind(String userKind) {
 		this.userKind = userKind;
 	}
-	public List<SectionOut> getSections() {
-		return sections;
+	public SectionOut getSection() {
+		return section;
 	}
-	public void setSections(List<SectionOut> sections) {
-		this.sections = sections;
+	public void setSection(SectionOut section) {
+		this.section = section;
 	}
 	
 }
