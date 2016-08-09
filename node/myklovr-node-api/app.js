@@ -4,6 +4,7 @@ var userCtrl = require('./controllers/user/ctrl.js');
 var userProfileCtrl = require('./controllers/userProfile/ctrl.js');
 var dictionariesCtrl = require('./controllers/dictionaries/ctrl.js');
 var resourceCtrl = require('./controllers/resource/ctrl.js');
+var cassandraCtrl = require('./controllers/session/ctrl.js');
 var cookieParser = require('cookie-parser');
 
 var express = require("express"),
@@ -52,6 +53,8 @@ app.get('/', function(req, res){
         + '</form>');
 });
 
+router.route('/resource/*')
+    .get(cassandraCtrl.verifySession);
 
 /*** resources ***/
 router.route('/resource/getResource')
@@ -83,7 +86,10 @@ router.route('/user/changePasswordRecovery')
 
 /*** USER PROFILE***/
 
-router.route('/userProfile/getSectionUserKind')
+
+router.route('/userProfile/*')
+    .post(userProfileCtrl.verifySession);
+router.route('/userProfile/getUserSectionKind')
     .post(userProfileCtrl.getUserSectionKind);
 router.route('/userProfile/getUserSectionBasicInfo')
     .post(userProfileCtrl.getUserSectionBasicInfo);

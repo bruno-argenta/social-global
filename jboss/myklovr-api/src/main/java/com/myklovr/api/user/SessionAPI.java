@@ -19,17 +19,16 @@ public class SessionAPI extends GenericAPI{
 
 	
 	
-	public static List<SessionDI> getValidSessionByToken(String sessionToken){
+	public static SessionDI getValidSessionByToken(String sessionToken){
 		StringBuffer statement = new StringBuffer();
 		statement.append("SELECT userid,sessiontoken,expirationtimestamp,username,provider,kind FROM session WHERE sessiontoken= ? ");
 		List<Object> args = new ArrayList<Object>();
 		args.add(sessionToken);
-		ResultSet result = executeStatement(statement.toString(), args);
-		List<SessionDI> resultList = new ArrayList<SessionDI>();
+		ResultSet result = executeStatement(statement.toString(), args);		
 		for (Row row : result) {
-			resultList.add(getElement(row));
+			return getElement(row);	
 		}
-		return resultList;	
+		return null;
 	}
 	
 	
@@ -76,13 +75,17 @@ public class SessionAPI extends GenericAPI{
 	
 	public static void insertSession(String sessionToken, UUID userId, String username, String provider, String kind) throws BussinesException{	
 		StringBuffer statement = new  StringBuffer();
-		statement.append("INSERT INTO session (sessiontoken,userid,expirationtimestamp,username,provider) ");		
-		statement.append("VALUES (?,?,toTimestamp(now()),?,?) IF NOT EXISTS");
+		statement.append("INSERT INTO session (sessiontoken,userid,expirationtimestamp,username,provider,kind) ");		
+		statement.append("VALUES (?,?,?,?,?,?) IF NOT EXISTS");
 		List<Object> args = new ArrayList<Object>();
+		Calendar expirationTime = Calendar.getInstance();
+		expirationTime.add(Calendar.DATE, 3);
 		args.add(sessionToken);
 		args.add(userId);	
+		args.add(expirationTime.getTime());
 		args.add(username);
 		args.add(provider);
+		args.add(kind);
 		ResultSet result = executeStatement(statement.toString(), args);
 		List<Row> rows = result.all();
 		if (!rows.isEmpty()){

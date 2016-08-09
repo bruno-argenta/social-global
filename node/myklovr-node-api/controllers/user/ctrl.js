@@ -116,6 +116,12 @@ function response(statusCode,model, connUUID){
     var res = connection.response;
     if ((connection.createCookie) && (statusCode == 200)){
         res.cookie('sessionToken',model.OperationData.sessionToken, { maxAge: 900000, httpOnly: true });
+        var operationData ={};
+        operationData.kind = model.OperationData.kind;
+        operationData.nextPage = model.OperationData.nextPage;
+        operationData.name = model.OperationData.name;
+        operationData.urlImageProfile = model.OperationData.urlImageProfile;
+        model.OperationData = operationData;
         console.log('Save cookie: '+model.OperationData);
     }
     res.status(statusCode).jsonp(model);

@@ -65,7 +65,7 @@ exports.getStates = function(req, res) {
     if (req.body.Country != undefined){
         getDictionary(req.body.Language,'STATE',req,res,req.body.Country);
     }else{
-        req.status(200).jsonp(invalidArgumentResponse);
+        res.status(200).jsonp(invalidArgumentResponse);
     }
 };
 exports.getIndustries = function(req, res) {

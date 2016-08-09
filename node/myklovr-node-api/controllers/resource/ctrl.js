@@ -12,14 +12,37 @@ resourcesText["login.scroller3.text"] ="text3";
 resourcesText["login.scroller4.text"] = "text4";
 
 var resources = [];
-resources["login.scroller1.image"] = "img/LogIn/image-1.jpg";
-resources["login.scroller2.image"] = "img/LogIn/image-2.jpg";
-resources["login.scroller3.image"] = "img/LogIn/image-3.jpg";
-resources["login.scroller4.image"] = "img/LogIn/image-4.jpg";
-resources["passwordrecovery.background.image"] = "img/PasswordRecovery/background.png";
+resources["login.scroller1.image"] = "/imagesDynamic/LogIn/image-1.jpg";
+resources["login.scroller2.image"] = "/imagesDynamic/LogIn/image-2.jpg";
+resources["login.scroller3.image"] = "/imagesDynamic/LogIn/image-3.jpg";
+resources["login.scroller4.image"] = "/imagesDynamic/LogIn/image-4.jpg";
+resources["passwordrecovery.background.image"] = "/imagesDynamic/PasswordRecovery/background.png";
+
+resources["wizard.image.student"]="/imagesDynamic/wizard/student.png";
+resources["wizard.image.parent"]="/imagesDynamic/wizard/parent.png";
+resources["wizard.image.school_university"]="/imagesDynamic/wizard/school.png";
+resources["wizard.image.company"]="/imagesDynamic/wizard/company.png";
+resources["wizard.image.tutor"]="/imagesDynamic/wizard/educator.png";
+
+resources["wizard.purpose.image.academic"]="/imagesDynamic/wizard/purpose/academic.png";
+resources["wizard.purpose.image.professional"]="/imagesDynamic/wizard/purpose/professional.png";
+resources["wizard.purpose.image.personal"]="/imagesDynamic/wizard/purpose/personal.png";
+resources["wizard.purpose.image.recruiting"]="/imagesDynamic/wizard/purpose/recruiting.png";
+resources["wizard.purpose.image.market"]="/imagesDynamic/wizard/purpose/market.png";
+resources["wizard.purpose.image.promoting"]="/imagesDynamic/wizard/purpose/promoting.png";
+resources["wizard.purpose.image.research"]="/imagesDynamic/wizard/purpose/researchdev.png";
+resources["wizard.purpose.image.career"]="/imagesDynamic/wizard/purpose/career.png";
+
+resources["wizard.basicInfo.image.student"]="/imagesDynamic/wizard/basicInfo/student.png";
+resources["wizard.basicInfo.image.parent"]="/imagesDynamic/wizard/basicInfo/parent.png";
+resources["wizard.basicInfo.image.school_university"]="/imagesDynamic/wizard/basicInfo/school_university.png";
+resources["wizard.basicInfo.image.company"]="/imagesDynamic/wizard/basicInfo/company.png";
+resources["wizard.basicInfo.image.tutor"]="/imagesDynamic/wizard/basicInfo/tutor.png";
+
+
 
 exports.getResource = function(req, res) {
-
+    console.log('get resource');
     var responseModel = {
             OperationStatus: -1,
             Message :
@@ -36,7 +59,7 @@ exports.getResource = function(req, res) {
         responseModel.OperationStatus =0;
         responseModel.Message.Text = "Success";
         responseModel.Message.Level = "Success";
-        responseModel.OperationData = { ResourceUrl:"http://"+CONSTANTS.CONFIG.APACHE_HOST + ":" + CONSTANTS.CONFIG.APACHE_PORT+"/"+resource};
+        responseModel.OperationData = { ResourceUrl: resource};
     }
     res.status(200).jsonp(responseModel);
 };
@@ -84,7 +107,7 @@ exports.uploadUserProfileImage = function(req,res){
     form.on('close', function(){
         var imageName = uuid.v1() + image.filename;
         var path = CONSTANTS.CONFIG.IMAGE_PATH + imageName;
-        fs.writeFile(path,image.data,'binary', function(err){
+        fs.writeFile('../' + path,image.data,'binary', function(err){
             if (err){
                 console.log('error: '+err);
                 responseModel.Message.Text="Can't save the file";
@@ -92,7 +115,7 @@ exports.uploadUserProfileImage = function(req,res){
             }else{
                 responseModel.Message = null;
                 responseModel.OperationStatus =0;
-                responseModel.OperationData = { Path: path};
+                responseModel.OperationData = { Path: 'http://'+ CONSTANTS.CONFIG.APACHE_HOST+':'+CONSTANTS.CONFIG.APACHE_PORT+'/'+ path};
                 res.status(200).jsonp(responseModel);
             }
         });
